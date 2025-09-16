@@ -11,34 +11,19 @@
   background-size:cover;
   background-position:center;
   background-repeat:no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 70vh;
+  text-align:center;
 }
 .mheading{
   color:white;
+  padding-top:30%;
   text-align:center;
   font-size: clamp(28px, 4vw + 1rem, 64px);
   font-weight: 800;
   font-family: 'Alfa Slab One', serif;
   line-height:1.2;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
-  margin: 0 auto;
-  max-width: 90%;
-  padding: 0 1rem;
 }
-
-/* Tablet and up - refined max width */
-@media screen and (min-width: 768px) {
-  .mheading {
-    max-width: 80%;
-  }
-}
-
-/* Desktop - further refined */
-@media screen and (min-width: 1024px) {
-  .mheading {
-    max-width: 70%;
-  }
+.sheading{
+  color:white;
+  text-align:center;
 }
