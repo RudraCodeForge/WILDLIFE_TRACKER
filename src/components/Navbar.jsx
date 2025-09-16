@@ -1,24 +1,4 @@
-import { useEffect } from 'react';
-
 const Navbar = () => {
-  const handleResize = () => {
-    const navbar = document.querySelector('.navbar');
-    if (navbar) {
-      if (window.innerWidth < 768) {
-        navbar.classList.add('navbar-expand-md');
-      } else {
-        navbar.classList.remove('navbar-expand-md');
-      }
-    }
-  };
-
-  useEffect(() => {
-    handleResize(); // Call on mount
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
   return (
     <nav className="navbar navbar-expand-md navbar-dark bg-dark">
       <div className="container-fluid d-flex justify-content-between">
@@ -36,7 +16,7 @@ const Navbar = () => {
 
         {/* Toggler for Mobile (visible on mobile, hidden on lg+) */}
         <button
-          className="navbar-toggler d-md-none"
+          className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNav"
@@ -48,7 +28,7 @@ const Navbar = () => {
         </button>
 
         {/* Center Links + Right Profile */}
-        <div className="collapse navbar-collapse d-md-flex" id="navbarNav">
+        <div className="collapse navbar-collapse" id="navbarNav">
           {/* Center Links */}
           <ul className="navbar-nav mx-auto gap-3">
             <li className="nav-item">
@@ -90,7 +70,7 @@ const Navbar = () => {
             {/* Profile Icon */}
             <a href="#" className="d-flex align-items-center">
               <img
-                src="/profile.jpg"
+                src="/logo.png"
                 alt="Profile"
                 className="rounded-circle"
                 width="36"
