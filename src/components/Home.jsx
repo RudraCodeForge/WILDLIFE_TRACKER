@@ -4,9 +4,9 @@ const Home = () =>{
     <>
       <div className={styles.home}>
         <div className={styles.bgimg}>
-          <p className={styles.mheading}>
+          <h1 className={styles.mheading}>
             प्रकृति की रक्षा, तकनीक के साथ
-          </p>
+          </h1>
         </div>
       </div>
     </>
