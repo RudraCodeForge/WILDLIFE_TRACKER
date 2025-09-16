@@ -1,3 +1,4 @@
+import styles from "../styles/Navbar.module.css"
 const Navbar = () => {
   const status = false; // Set to true/false to test different states
 
@@ -79,7 +80,7 @@ const Navbar = () => {
               {/* Profile Icon */}
               <a href="#" className="d-flex align-items-center">
                 <img
-                  src="/logo.png"
+                  src="/me.jpg"
                   alt="Profile"
                   className="rounded-circle"
                   width="36"
@@ -94,11 +95,11 @@ const Navbar = () => {
             {/* Mobile - Collapsible buttons inside hamburger menu */}
             <div className="collapse navbar-collapse" id="navbarNav">
               <div className="navbar-nav ms-auto d-md-none">
-                <a href="#" className="nav-link btn btn-success text-white mb-2">
-                  Login
+                <a href="#" className={`nav-link btn btn-success text-white mb-2 ${styles.login}`}>
+                  LOGIN
                 </a>
-                <a href="#" className="nav-link btn btn-outline-success">
-                  Join Our Mission
+                <a href="#" className={`nav-link btn btn-outline-success ${styles.signup}`}>
+                  JOIN OUR MISSION
                 </a>
               </div>
             </div>
