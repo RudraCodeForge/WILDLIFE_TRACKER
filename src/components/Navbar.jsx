@@ -70,7 +70,7 @@ const Navbar = () => {
             {/* Profile Icon */}
             <a href="#" className="d-flex align-items-center">
               <img
-                src="/logo.png"
+                src="/me.png"
                 alt="Profile"
                 className="rounded-circle"
                 width="36"
