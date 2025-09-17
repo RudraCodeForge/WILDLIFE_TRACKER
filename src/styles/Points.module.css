@@ -1,11 +1,58 @@
 .PointsCon{
-  width:200px;
-  height:auto;
-  padding:5px;
-  text-align:center;
+  width: 100%;
+  height: auto;
+  padding: 2rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+.PointsCon:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
 .Icon{
-  border:1px solid green;
-  border-radius:50%;
-  padding:5px;
+  border: 2px solid #28a745;
+  border-radius: 50%;
+  padding: 15px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  background: rgba(40, 167, 69, 0.1);
+  transition: all 0.3s ease;
+}
+
+.PointsCon:hover .Icon {
+  background: rgba(40, 167, 69, 0.2);
+  transform: scale(1.1);
+}
+
+.PointsCon h2 {
+  font-size: clamp(18px, 2.5vw, 24px);
+  margin: 1rem 0;
+  color: white;
+  font-weight: 600;
+}
+
+.PointsCon p {
+  font-size: clamp(14px, 1.8vw, 16px);
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Mobile specific styles */
+@media (max-width: 768px) {
+  .PointsCon{
+    padding: 1.5rem;
+  }
+  
+  .Icon{
+    padding: 12px;
+  }
 }

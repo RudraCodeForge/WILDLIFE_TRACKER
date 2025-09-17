@@ -1,34 +1,74 @@
 @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
+
 .home{
-  width:100vw;
+  width:100%;
   height:auto;
   color:whitesmoke;
 }
+
 .innerhome{
-  width:100vw;
-  height:70vh;
+  width:100%;
+  min-height:70vh;
   background-color:#13171c;
+  display: flex;
+  align-items: center;
 }
+
 .bgimg{
-  width:100vw;
-  height:70vh;
+  width:100%;
+  min-height:70vh;
   background-image: url("../assets/bgimg.png");
   background-size:cover;
   background-position:center;
   background-repeat:no-repeat;
   text-align:center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
 }
+
 .mheading{
   color:white;
-  padding-top:30%;
   text-align:center;
-  font-size: clamp(28px, 4vw + 1rem, 64px);
+  font-size: clamp(24px, 5vw, 64px);
   font-weight: 800;
   font-family: 'Alfa Slab One', serif;
   line-height:1.2;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+  margin-bottom: 1rem;
 }
+
 .sheading{
   color:white;
   text-align:center;
+  font-size: clamp(14px, 2.5vw, 18px);
+  margin-bottom: 2rem;
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+.hbtn{
+  font-size: clamp(14px, 2vw, 16px);
+  padding: 12px 24px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+/* Mobile specific styles */
+@media (max-width: 768px) {
+  .bgimg{
+    min-height: 60vh;
+    padding: 1rem;
+  }
+  
+  .mheading{
+    font-size: clamp(20px, 6vw, 40px);
+  }
+  
+  .sheading{
+    font-size: clamp(12px, 3vw, 16px);
+    margin-bottom: 1.5rem;
+  }
 }
