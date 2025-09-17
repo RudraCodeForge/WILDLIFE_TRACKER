@@ -19,13 +19,20 @@
   border: 2px solid #28a745;
   border-radius: 50%;
   padding: 15px;
-  color: green;
+  color: #28a745;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 1rem;
   background: rgba(40, 167, 69, 0.1);
   transition: all 0.3s ease;
+  width: 60px;
+  height: 60px;
+}
+
+.Icon svg {
+  color: #28a745 !important;
+  fill: currentColor;
 }
 
 .PointsCon:hover .Icon {
