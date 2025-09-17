@@ -19,11 +19,12 @@
   border: 2px solid #28a745;
   border-radius: 50%;
   padding: 15px;
-  color:green;
+  color: green;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 1rem;
+  background: rgba(40, 167, 69, 0.1);
   transition: all 0.3s ease;
 }
 
@@ -51,7 +52,7 @@
   .PointsCon{
     padding: 1.5rem;
   }
-  
+
   .Icon{
     padding: 12px;
   }
