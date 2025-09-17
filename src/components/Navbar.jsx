@@ -106,7 +106,9 @@ const Navbar = () => {
                 <Link
                   to="/login"
                   className={`nav-link btn btn-success text-white mb-2 ${styles.login}`}
-                />
+                >
+                  LOGIN
+                </Link>
                 <a
                   href="#"
                   className={`nav-link btn btn-outline-success ${styles.signup}`}
@@ -118,9 +120,9 @@ const Navbar = () => {
 
             {/* Desktop - Show buttons on right side */}
             <div className="d-none d-md-flex align-items-center gap-3">
-              <a href="#" className="btn btn-success">
+              <Link to="/login" className="btn btn-success">
                 Login
-              </a>
+              </Link>
               <a href="#" className="btn btn-outline-success">
                 Join Our Mission
               </a>
