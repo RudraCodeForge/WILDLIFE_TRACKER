@@ -17,10 +17,9 @@ const Home_Points = () => {
       TITLE: "Data & Insights",
       DESC: "Comprehensive data analysis for informed conservation efforts.",
     },
-    ,
     {
       ICON: AiOutlineSafety,    
-      TITLE: "Secure Montring",
+      TITLE: "Secure Monitoring",
       DESC: "Advanced security measures to protect animal data and locations.",
     },
   ];
