@@ -109,12 +109,12 @@ const Navbar = () => {
                 >
                   LOGIN
                 </Link>
-                <a
-                  href="#"
+                <Link
+                  to="/signup"
                   className={`nav-link btn btn-outline-success ${styles.signup}`}
                 >
                   JOIN OUR MISSION
-                </a>
+                </Link>
               </div>
             </div>
 
@@ -123,9 +123,9 @@ const Navbar = () => {
               <Link to="/login" className="btn btn-success">
                 Login
               </Link>
-              <a href="#" className="btn btn-outline-success">
+              <Link to="/signup" className="btn btn-outline-success">
                 Join Our Mission
-              </a>
+              </Link>
             </div>
           </>
         )}

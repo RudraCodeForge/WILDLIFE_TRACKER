@@ -1,5 +1,5 @@
 import styles from "../styles/Login.module.css";
-
+import { Link } from "react-router-dom";
 const Login = () => {
   return (
     <div className={`${styles.wrapper} d-flex align-items-center justify-content-center`}>
@@ -50,9 +50,9 @@ const Login = () => {
 
         <p className="text-center text-secondary mt-3 mb-0 small">
           Don't have an account?{" "}
-          <a href="#" className="text-success text-decoration-none">
+          <Link to="/signup" className="text-success text-decoration-none">
             Sign up
-          </a>
+          </Link>
         </p>
       </div>
     </div>

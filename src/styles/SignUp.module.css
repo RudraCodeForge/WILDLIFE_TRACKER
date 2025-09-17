@@ -1,0 +1,102 @@
+.wrapper {
+  min-height: 100vh;
+  background-color: #0d0d0d; /* dark background */
+  padding: 1rem;
+}
+
+.card {
+  background-color: #141414;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.input {
+  background-color: #1f1f1f;
+  border: none;
+  color: #fff;
+  padding: 12px 16px;
+  font-size: 16px; /* Prevents zoom on mobile */
+}
+
+.input::placeholder {
+  color: #888;
+}
+
+.input:focus {
+  background-color: #1f1f1f;
+  color: #fff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 255, 128, 0.25);
+  border: none;
+  outline: none;
+}
+
+.loginBtn {
+  background-color: #00e676 !important;
+  color: black !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  transition: all 0.2s ease-in-out !important;
+  padding: 12px 20px !important;
+  font-size: 16px !important;
+  border: none !important;
+}
+
+.loginBtn:hover {
+  background-color: #00c853 !important;
+  color: white !important;
+}
+
+.loginBtn:focus {
+  background-color: #00e676 !important;
+  color: black !important;
+  box-shadow: 0 0 0 0.2rem rgba(0, 255, 128, 0.25) !important;
+  border: none !important;
+}
+
+.loginBtn:active {
+  background-color: #00c853 !important;
+  color: white !important;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 576px) {
+  .wrapper {
+    padding: 0.5rem;
+  }
+  
+  .card {
+    max-width: 100%;
+    margin: 0;
+    border-radius: 8px;
+  }
+  
+  .input {
+    padding: 14px 16px;
+    font-size: 16px;
+  }
+  
+  .loginBtn {
+    padding: 14px 20px;
+    font-size: 16px;
+  }
+}
+
+/* Tablet responsiveness */
+@media (min-width: 577px) and (max-width: 768px) {
+  .card {
+    max-width: 450px;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 320px) {
+  .wrapper {
+    padding: 0.25rem;
+  }
+  
+  .card {
+    padding: 1.5rem !important;
+  }
+}
