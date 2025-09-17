@@ -69,10 +69,9 @@ const SignUp = () => {
                   name="lastName"
                   type="text"
                   className={`form-control ${styles.input}`}
-                  placeholder="Last Name *"
+                  placeholder="Last Name"
                   value={formData.lastName}
                   onChange={handleInputChange}
-                  required
                   autoComplete="family-name"
                 />
               </div>
