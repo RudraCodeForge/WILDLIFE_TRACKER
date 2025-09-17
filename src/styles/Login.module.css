@@ -1,0 +1,36 @@
+.wrapper {
+  min-height: 100vh;
+  background-color: #0d0d0d; /* dark background */
+}
+
+.card {
+  background-color: #141414;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.input {
+  background-color: #1f1f1f;
+  border: none;
+  color: #fff;
+}
+
+.input:focus {
+  background-color: #1f1f1f;
+  color: #fff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 255, 128, 0.25);
+}
+
+.loginBtn {
+  background-color: #00e676;
+  color: black;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+}
+
+.loginBtn:hover {
+  background-color: #00c853;
+  color: white;
+}
