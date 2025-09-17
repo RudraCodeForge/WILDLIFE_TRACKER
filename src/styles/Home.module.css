@@ -1,6 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
 .home{
   width:100vw;
+  height:auto;
+  color:whitesmoke;
+}
+.innerhome{
+  width:100vw;
   height:70vh;
   background-color:#13171c;
 }
