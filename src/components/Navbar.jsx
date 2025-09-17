@@ -1,4 +1,6 @@
-import styles from "../styles/Navbar.module.css"
+import styles from "../styles/Navbar.module.css";
+import { Link, useLocation } from "react-router-dom";
+
 const Navbar = () => {
   const status = false; // Set to true/false to test different states
 
@@ -95,10 +97,20 @@ const Navbar = () => {
             {/* Mobile - Collapsible buttons inside hamburger menu */}
             <div className="collapse navbar-collapse" id="navbarNav">
               <div className="navbar-nav ms-auto d-md-none">
-                <a href="#" className={`nav-link btn btn-success text-white mb-2 ${styles.login}`}>
+                {/*<a
+                  href="#"
+                  className={`nav-link btn btn-success text-white mb-2 ${styles.login}`}
+                >
                   LOGIN
-                </a>
-                <a href="#" className={`nav-link btn btn-outline-success ${styles.signup}`}>
+                </a>*/}
+                <Link
+                  to="/login"
+                  className={`nav-link btn btn-success text-white mb-2 ${styles.login}`}
+                />
+                <a
+                  href="#"
+                  className={`nav-link btn btn-outline-success ${styles.signup}`}
+                >
                   JOIN OUR MISSION
                 </a>
               </div>
