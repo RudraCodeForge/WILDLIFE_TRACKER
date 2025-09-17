@@ -1,17 +1,17 @@
 import styles from "../styles/Points.module.css";
-const Points = () =>{
-  return(
+
+const Points = ({ICON,TITLE,DESC}) => {
+  return (
     <div className={styles.PointsCon}>
-      <img
-        src="/logo.png"
-        alt="Logo"
-        width="28"
-        height="28"
-        className="d-inline-block align-text-top"
+      <ICON
+        size={28} 
+        color="green" 
+        className={`d-inline-block align-text-top ${styles.Icon}`}
       />
-      <h2>Live Tracking</h2>
-      <p>Real time location tracking of endangered animals.</p>
+      <h2>{TITLE}</h2>
+      <p>{DESC}</p>
     </div>
   )
 }
+
 export default Points;

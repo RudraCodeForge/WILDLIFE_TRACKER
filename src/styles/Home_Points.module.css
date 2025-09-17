@@ -1,0 +1,12 @@
+/* Points.module.css */
+.PointsCon {
+  margin: 20px 0;
+  text-align:center;
+  display: flex;
+  flex-wrap: wrap;       /* items ke beech spacing */
+  justify-content: space-evenly; /* centre align horizontally */
+  align-items: flex-start; /* upar se align */
+}
+li{
+  list-style-type:none;
+}

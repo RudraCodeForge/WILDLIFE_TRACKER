@@ -1,5 +1,5 @@
 import styles from "../styles/Home.module.css";
-import Points from "./Points";
+import Home_Points from "./Home_Points";
 const Home = () => {
   return (
     <>
@@ -16,7 +16,7 @@ const Home = () => {
             </button>
           </div>
         </div>
-        <Points />
+        <Home_Points />
       </div>
     </>
   );
