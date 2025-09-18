@@ -1,36 +1,43 @@
-import styles from "../styles/Login.module.css";
+
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
 const Forget_Passward = () => {
-  const SubmitHandler = (e) => {
+  const [email, setEmail] = useState('');
+
+  const handleSubmit = (e) => {
     e.preventDefault();
+    // Add password reset logic here
+    console.log('Password reset requested for:', email);
+  };
 
-    console.log(e.target.Email.value);
-  }
   return (
-    <div className={`${styles.wrapper} d-flex align-items-center justify-content-center`}>
-      <div className={`${styles.card} p-4 p-sm-5 shadow-lg`}>
-        <h2 className="text-center text-light mb-3 h3 h-sm-2">Reset your password</h2>
-        <p className="text-center text-secondary mb-4 small">
-          Enter your email address and we'll send you a password reset link.
-        </p>
-
-        <form onSubmit={SubmitHandler}>
+    <div className="container d-flex justify-content-center align-items-center" style={{ minHeight: '80vh' }}>
+      <div className="card p-4 shadow" style={{ width: '100%', maxWidth: '400px' }}>
+        <h2 className="text-center mb-4">Reset Password</h2>
+        <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label htmlFor="Email" className="visually-hidden">
-              Email
+            <label htmlFor="email" className="form-label">
+              Email Address
             </label>
             <input
-              id="Email"
-              type="Email"
-              className={`form-control ${styles.input}`}
-              placeholder="Email address"
+              type="email"
+              className="form-control"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
-              autoComplete="fakeeamil@email.com"
             />
           </div>
-          <button type="submit" className={`btn ${styles.loginBtn} w-100`}>
-            Forget Password 
+          <button type="submit" className="btn btn-primary w-100">
+            Send Reset Link
           </button>
         </form>
+        <div className="text-center mt-3">
+          <Link to="/login" className="text-decoration-none">
+            Back to Login
+          </Link>
+        </div>
       </div>
     </div>
   );
