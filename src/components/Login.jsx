@@ -38,9 +38,9 @@ const Login = () => {
           </div>
 
           <div className="mb-3 text-start">
-            <a href="#" className="text-secondary small text-decoration-none">
+            <Link to="/forget_password" className="text-secondary small text-decoration-none">
               Forgot your password?
-            </a>
+            </Link>
           </div>
 
           <button type="submit" className={`btn ${styles.loginBtn} w-100`}>

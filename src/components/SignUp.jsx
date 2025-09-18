@@ -179,13 +179,13 @@ const SignUp = () => {
               />
               <label className={`form-check-label ${styles.checkboxLabel}`} htmlFor="agreeToTerms">
                 I agree to the{" "}
-                <a href="#" className="text-success text-decoration-none">
+                <Link to="/termsandcondition" className="text-success text-decoration-none">
                   Terms of Service
-                </a>{" "}
+                </Link>{" "}
                 and{" "}
-                <a href="#" className="text-success text-decoration-none">
+                <Link to="/privacypolicy" className="text-success text-decoration-none">
                   Privacy Policy
-                </a>
+                </Link>
               </label>
             </div>
           </div>

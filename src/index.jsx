@@ -6,6 +6,9 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp"
 import NotFound from "./components/NotFound";
+import Forget_Passward from "./components/Forget_Passward";
+import TermsAndCondition from "./components/TermsAndCondition";
+import PrivacyPolicy from "./components/PrivacyPolicy";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
@@ -26,6 +29,19 @@ const router = createBrowserRouter([
         path: "/signup",
         element: <SignUp />,
       },
+      {
+        path: "/forget_password",
+        element: <Forget_Passward />
+      },
+      {
+        path: "/termsandcondition",
+        element: <TermsAndCondition />
+      },
+      {
+        path: "/privacypolicy",
+        element: <PrivacyPolicy />
+      },
+      
     ],
   },
   {
