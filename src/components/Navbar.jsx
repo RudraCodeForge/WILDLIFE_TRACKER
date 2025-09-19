@@ -1,6 +1,5 @@
 import styles from "../styles/Navbar.module.css";
 import { Link, useLocation } from "react-router-dom";
-
 const Navbar = () => {
   const status = true;
   const role = "user";
@@ -73,13 +72,6 @@ const Navbar = () => {
                 ${styles.Links}`}
               to="/profile"
             >
-              <img
-                src="/logo.png"
-                alt="Logo"
-                width="24"
-                height="24"
-                className="d-inline-block align-text-top"
-              />
               Profile
             </Link>
           </div>
