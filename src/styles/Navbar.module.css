@@ -2,4 +2,30 @@
 .signup{
   margin-top:10px;
   border:2px solid white !important;
+  transition:0.8s ease-in-out;
+}
+.login:hover,
+.signup:hover{
+  border-radius:10px;
+  background-color:#327026;
+}
+.Links{
+  margin:10px 0px;
+  border:2px solid white !important ;
+  text-align:center;
+  transition:1s ease-in-out;
+}
+.Links:hover{
+  border-radius:10px;
+  background-color:#327026;
+}
+.Active{
+  color:lime !important;
+  border:2px solid lime !important;
+}
+
+@media (min-width: 768px){
+  .Hamburger{
+    display:none;
+  }
 }
