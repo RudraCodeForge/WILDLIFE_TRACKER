@@ -1,0 +1,64 @@
+.Heading{
+  color:lime;
+  padding:20px 10px;
+}
+.card {
+  background-color: #1a1a1a;
+  border-radius: 12px;
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.image {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  margin: 0;
+}
+
+.scientific {
+  font-size: 0.85rem;
+  color: #a5a5a5;
+  margin: 0;
+}
+
+.details {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #00ff4c;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.details:hover {
+  color: #00cc3a;
+}
+
+/* Badge Colors */
+.badge {
+  font-size: 0.8rem;
+  margin-bottom: 8px;
+}
+
+.cr {
+  background-color: #e74c3c !important; /* Critical */
+}
+
+.en {
+  background-color: #e67e22 !important; /* Endangered */
+}
+
+.vu {
+  background-color: #f1c40f !important; /* Vulnerable */
+}

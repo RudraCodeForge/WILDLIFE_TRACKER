@@ -9,7 +9,8 @@ import NotFound from "./components/NotFound";
 import Forget_Passward from "./components/Forget_Passward";
 import TermsAndCondition from "./components/TermsAndCondition";
 import PrivacyPolicy from "./components/PrivacyPolicy";
-import ContactUs from "./components/ContactUs"
+import ContactUs from "./components/ContactUs";
+import SpeciesList from "./components/SpeciesList";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
@@ -45,8 +46,11 @@ const router = createBrowserRouter([
       {
         path: "/contactus",
         element: <ContactUs />
+      },
+      {
+        path: "/species",
+        element: <SpeciesList />
       }
-      
     ],
   },
   {
