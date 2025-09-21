@@ -11,6 +11,9 @@ import TermsAndCondition from "./components/TermsAndCondition";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import ContactUs from "./components/ContactUs";
 import SpeciesList from "./components/SpeciesList";
+import Profile from "./components/Profile";
+import TrackedAnimals from "./components/TrackedAnimals";
+import Overview from "./components/Overview";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
@@ -50,6 +53,28 @@ const router = createBrowserRouter([
       {
         path: "/species",
         element: <SpeciesList />
+      },
+      {
+        path:"/profile",
+        element: <Profile />,
+        children:[
+          {
+            path:"/profile",
+            element: <Overview/>
+          },
+          {
+            path:"/profile/overview",
+            element: <Overview/>
+          },
+          {
+            path:"/profile/tracked-animals",
+            element: <TrackedAnimals/>
+          },
+          {
+            path:"/profile/missions",
+            element: <TrackedAnimals/>
+          }
+        ]
       }
     ],
   },

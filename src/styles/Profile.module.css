@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
+.Container{
+  padding:10px;
+}
+.ProfileCon{
+  border-radius:10px;
+  position:relative;
+  height:auto;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5)
+}
+.BgImg{
+  width:100%;
+  height:150px;
+  border-radius:10px;
+  margin-bootom:20px;
+  background-image: url("/banner.jpg");
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+}
+.IconCon{
+  padding:5px;
+  width:100%;
+  text-align:right;
+}
+.Icon{
+  font-size:20px;
+  margin: 0 5px;
+}
+.Icon:nth-child(1){
+  color: yellow;
+}
+.Icon:nth-child(2){
+  color: #0075b0;
+}
+.Icon:nth-child(3){
+  color: red;
+}
+.DataCon{
+  position: absolute;
+  top: 100px;
+}
+.ProfileImg{
+  margin-bottom:10px !important;
+  width:90px;
+  height:90px;
+  border: 2px solid white;
+  border-radius:50%;
+}
+.Name{
+  margin:0;
+  margin-top:30px;
+  font-family: "Alfa Slab One", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.Username{
+  margin:0;
+  letter-spacing:1px;
+  font-weight:bold;
+  font-size:1.5rem;
+}
+.Badge{
+  background-color:#00c227;
+  opecity:0.6;
+  padding:5px 20px;
+  border-radius:20px;
+}
+.MainData{
+  padding-left:10px;
+  margin-top:90px;
+}
+.KeypointsCon{
+  display:flex;
+  justify-content:space-around;
+  margin:20px 0;
+  padding:20px 10px;
+  border-radius:10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5)
+}
+.KeyPoints{
+  width:30vw;
+  text-align:center;
+  border-readius:20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5)
+}
+.No,
+.PointsName{
+  font-family: "Alfa Slab One", serif;
+  padding:5px;
+  margin:0;
+  color:white;
+}
+.LinksCon{
+  display:flex;
+  justify-content:space-around;
+}
+.Link{
+  color:white;
+  text-decoration:none;
+}
+.Link:hover{
+  color:lime;
+}
+.Active{
+  color:lime;
+  text-decoration:underline;
+}

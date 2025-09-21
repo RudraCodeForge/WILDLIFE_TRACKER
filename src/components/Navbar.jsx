@@ -69,7 +69,8 @@ const Navbar = () => {
 
             <Link
               className={`nav-link text-center mt-3
-                ${styles.Links}`}
+                ${styles.Links} 
+                ${["/profile", "/profile/tracked-animals", "/profile/missions", "/profile/overview"].includes(location) ? styles.Active : ""}`}
               to="/profile"
             >
               Profile
