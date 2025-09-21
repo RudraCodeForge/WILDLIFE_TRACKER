@@ -48,6 +48,7 @@
 }
 
 .footerLink {
+  color:white !important;
   transition: all 0.3s ease;
   position: relative;
   padding-left: 15px;
@@ -79,6 +80,7 @@
   align-items: center;
   justify-content: center;
   width: 40px;
+  color:white;
   height: 40px;
   border-radius: 50%;
   transition: all 0.3s ease;

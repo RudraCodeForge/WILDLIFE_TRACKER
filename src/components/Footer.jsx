@@ -17,7 +17,7 @@ const Footer = () => {
                 <FaPaw className="me-2" />
                 WILDLIFE TRACKER
               </h3>
-              <p className={`${styles.brandDesc} text-muted mb-3`}>
+              <p className={`${styles.brandDesc} mb-3`}>
                 Tracking Wildlife, Preserving Nature for Future Generations
               </p>
               <div className={`${styles.missionBadge} bg-success bg-opacity-10 p-2 rounded`}>
@@ -29,35 +29,6 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div className="col-lg-2 col-md-6 mb-4">
-            <h5 className={`${styles.sectionTitle} text-success border-bottom border-success pb-2 mb-3`}>
-              Quick Links
-            </h5>
-            <ul className="list-unstyled">
-              <li className="mb-2">
-                <Link to="/" className={`${styles.footerLink} text-muted text-decoration-none`}>
-                  Home
-                </Link>
-              </li>
-              <li className="mb-2">
-                <Link to="/species" className={`${styles.footerLink} text-muted text-decoration-none`}>
-                  Species
-                </Link>
-              </li>
-              <li className="mb-2">
-                <Link to="/dashboard" className={`${styles.footerLink} text-muted text-decoration-none`}>
-                  Dashboard
-                </Link>
-              </li>
-              <li className="mb-2">
-                <Link to="/profile" className={`${styles.footerLink} text-muted text-decoration-none`}>
-                  Profile
-                </Link>
-              </li>
-            </ul>
-          </div>
-
           {/* Support Section */}
           <div className="col-lg-3 col-md-6 mb-4">
             <h5 className={`${styles.sectionTitle} text-success border-bottom border-success pb-2 mb-3`}>
@@ -65,17 +36,17 @@ const Footer = () => {
             </h5>
             <ul className="list-unstyled">
               <li className="mb-2">
-                <Link to="/contactus" className={`${styles.footerLink} text-muted text-decoration-none`}>
+                <Link to="/contactus" className={`${styles.footerLink} text-decoration-none`}>
                   Contact Us
                 </Link>
               </li>
               <li className="mb-2">
-                <Link to="/privacypolicy" className={`${styles.footerLink} text-muted text-decoration-none`}>
+                <Link to="/privacypolicy" className={`${styles.footerLink} text-decoration-none`}>
                   Privacy Policy
                 </Link>
               </li>
               <li className="mb-2">
-                <Link to="/termsandcondition" className={`${styles.footerLink} text-muted text-decoration-none`}>
+                <Link to="/termsandcondition" className={`${styles.footerLink} text-decoration-none`}>
                   Terms & Conditions
                 </Link>
               </li>
@@ -87,20 +58,20 @@ const Footer = () => {
             <h5 className={`${styles.sectionTitle} text-success border-bottom border-success pb-2 mb-3`}>
               Join Our Mission
             </h5>
-            <p className="text-muted small mb-3">
+            <p className=" small mb-3">
               Follow us for wildlife updates and conservation awareness
             </p>
             <div className={`${styles.socialLinks} d-flex gap-3 mb-3`}>
-              <a href="#" className={`${styles.socialIcon} text-muted`} aria-label="Instagram">
+              <a href="#" className={`${styles.socialIcon} `} aria-label="Instagram">
                 <FaInstagram size={20} />
               </a>
-              <a href="#" className={`${styles.socialIcon} text-muted`} aria-label="Twitter">
+              <a href="#" className={`${styles.socialIcon} `} aria-label="Twitter">
                 <FaTwitter size={20} />
               </a>
-              <a href="#" className={`${styles.socialIcon} text-muted`} aria-label="LinkedIn">
+              <a href="#" className={`${styles.socialIcon} `} aria-label="LinkedIn">
                 <FaLinkedin size={20} />
               </a>
-              <a href="#" className={`${styles.socialIcon} text-muted`} aria-label="GitHub">
+              <a href="#" className={`${styles.socialIcon} `} aria-label="GitHub">
                 <FaGithub size={20} />
               </a>
             </div>
@@ -118,12 +89,12 @@ const Footer = () => {
         {/* Bottom Section */}
         <div className="row align-items-center">
           <div className="col-md-6 text-center text-md-start">
-            <p className="mb-0 text-muted small">
+            <p className="mb-0  small">
               © 2025 Wildlife Tracker. All rights reserved.
             </p>
           </div>
           <div className="col-md-6 text-center text-md-end">
-            <p className="mb-0 text-muted small">
+            <p className="mb-0 small">
               Developed with 💚 by{" "}
               <span className="text-success fw-semibold">Prince Daksh</span>
             </p>
