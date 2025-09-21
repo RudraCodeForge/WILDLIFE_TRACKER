@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
+
+.dashboard{
+  padding:10px;
+}
+.heading{
+  margin:10px;
+  font-family: "Alfa Slab One", serif;
+  color:white;
+}
+.MapCon{
+  position:relative;
+  margin:20px 0;
+  padding:10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  border-radius:20px;
+}
+.Search{
+  position: absolute;
+  top:120px;
+  left:65px;
+  z-index:1000;
+}
+.Search input{
+  font-weight:bold;
+  width:250px;
+  border:none;
+  border-radius:10px;
+  background-color:white;
+  height:40px;
+  padding:10px;
+}
+.KeypointsCon{
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  border-radius:20px;
+  display:flex;
+  justify-content:space-between;
+  margin:20px 10px;
+  padding:10px;
+}
+.Zone{
+  margin:20px 10px;
+  padding:10px 5px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  border-radius:20px;
+}
+.Zone p{
+  margin:0;
+  font-weight:bolder;
+  margin-left:10px;
+}
+.Trend{
+  margin:10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  border-radius:20px;
+  padding:10px;
+}
+.activityChartContainer {
+  height: 200px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  padding-bottom: 10px;
+  position: relative;
+}
+
+.activityBar {
+  width: 12%;
+  background-color: #28a745;
+  border-radius: 5px 5px 0 0;
+  transition: height 0.3s ease-in-out;
+  position: relative;
+  margin: 0 1%;
+}

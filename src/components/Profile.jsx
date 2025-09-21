@@ -45,7 +45,7 @@ const Profile = () => {
       <div className={styles.KeypointsCon}>
         {activities.map((activity, index) => {
           return (
-            <KeyPoints key={index} No={activity.No} Name={activity.Name} />
+            <KeyPoints key={index} No={activity.No} Name={activity.Name} PassedWidth={"30vw"}/>
           );
         })}
       </div>

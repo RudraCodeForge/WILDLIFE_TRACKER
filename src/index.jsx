@@ -14,6 +14,7 @@ import SpeciesList from "./components/SpeciesList";
 import Profile from "./components/Profile";
 import TrackedAnimals from "./components/TrackedAnimals";
 import Overview from "./components/Overview";
+import Dashboard from "./components/Dashboard";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
@@ -75,6 +76,10 @@ const router = createBrowserRouter([
             element: <TrackedAnimals/>
           }
         ]
+      },
+      {
+        path:"/dashboard",
+        element: <Dashboard/>
       }
     ],
   },

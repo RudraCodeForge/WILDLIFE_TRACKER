@@ -1,0 +1,43 @@
+import styles from "../styles/Dashboard.module.css";
+import MyMap from "./Map";
+import KeyPoints from "./KeyPoints";
+import RecentActivity from "./ActivityTrend"
+const Dashboard = () => {
+  const Points = [
+    {
+      id: 1,
+      No: 150,
+      Name: "Total Species Monitored",
+    },
+    {
+      id: 2,
+      No: 230,
+      Name: "Total Animals Tracked",
+    },
+  ];
+  return (
+    <div className={`bg-dark ${styles.dashboard}`}>
+      <div className={styles.MapCon}>
+        <h1 className={styles.heading}>Endangered Species Tracking</h1>
+        <MyMap />
+        <div className={styles.Search}>
+          <input type="text" placeholder="Search for species or location ..." />
+        </div>
+      </div>
+      <h1 className={styles.heading}>Key Data Points</h1>
+      <div className={styles.KeypointsCon}>
+        {Points.map((point) => {
+          return <KeyPoints key={point.id} No={point.No} Name={point.Name} />;
+        })}
+      </div>
+      <div className={styles.Zone}>
+        <p className="text-white">Most Active Zone</p>
+        <h1 className={styles.heading}>Amazon Rainforest</h1>
+      </div>
+      <div className={styles.Trend}>
+        <RecentActivity/>
+      </div>
+    </div>
+  );
+};
+export default Dashboard;

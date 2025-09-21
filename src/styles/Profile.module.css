@@ -79,7 +79,7 @@
   box-shadow: 0 0 10px rgba(0,0,0,0.5)
 }
 .KeyPoints{
-  width:30vw;
+  margin:10px 5px;
   text-align:center;
   border-readius:20px;
   box-shadow: 0 0 10px rgba(0,0,0,0.5)
@@ -87,7 +87,7 @@
 .No,
 .PointsName{
   font-family: "Alfa Slab One", serif;
-  padding:5px;
+  padding:10px;
   margin:0;
   color:white;
 }
