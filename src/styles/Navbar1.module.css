@@ -1,0 +1,153 @@
+.Navbar1 {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  transition: all 0.4s ease;
+  box-shadow: 0 10px rgba(0,0,0,0.5);
+}
+
+/* Top section */
+.NavbarTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/* Logo */
+.LogoCon {
+  display: flex;
+  align-items: center;
+}
+
+.LogoText {
+  color: white;
+  margin:0;
+  margin-left: 10px;
+}
+
+/* Hamburger (mobile) */
+.Hamburger {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.bar {
+  margin: 4px 0;
+  background-color: white;
+  width: 30px;
+  height: 4px;
+  transition: all 0.4s ease;
+}
+
+.Hamburger.active .bar:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.Hamburger.active .bar:nth-child(2) {
+  opacity: 0;
+}
+.Hamburger.active .bar:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Mobile Links */
+.LinksCon {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+/* Desktop Links */
+.LaptopLinks {
+  display: none;
+}
+
+.LLink {
+  text-decoration: none;
+  color: white;
+  padding: 10px 15px;
+  margin: 0 5px;
+  transition: 0.3s;
+}
+.Link{
+  border:2px solid white;
+  text-align:center;
+  color:white;
+  padding:10px;
+  text-decoration:none;
+  margin:10px;
+  transition:1s ease-in-out;
+}
+.Link:hover{
+  border:2px solid lime;
+  border-radius:20px;
+  background-color:rgba(0,255,0,0.5);
+}
+.Active{
+  border:none;
+  background-color:rgba(0,255,0,0.5);
+  border-bottom:2px solid lime;
+  color:lime;
+  
+}
+.LLink:hover, .LActive {
+  color: lime;
+  border-bottom: 2px solid lime;
+}
+
+/* Profile image */
+.ProfileCon {
+  display: none;
+}
+
+.ProfileImg {
+  border-radius: 50%;
+}
+
+.Login,.Signup{
+  text-decoration:none;
+  margin:0 10px ;
+}
+.Signup{
+  border-radius:10px;
+  padding:10px;
+  background-color:green;
+  color:white;
+}
+.Login{
+  border-radius:10px;
+  padding:10px;
+  box-shadow:0 0 10px rgba(0,0,0,0.5);
+  color:white;
+}
+.Alert{
+  margin-left:10px;
+  color:white;
+}
+/* Desktop styles */
+@media (min-width: 768px) {
+  .Hamburger {
+    display: none;
+  }
+
+  .LinksCon {
+    display: none; /* hide mobile links */
+  }
+
+  .LaptopLinks {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .ProfileCon {
+    display: flex;
+  }
+
+  .NavbarTop {
+    justify-content: space-between;
+  }
+}
