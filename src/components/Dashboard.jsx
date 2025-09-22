@@ -1,8 +1,7 @@
 import styles from "../styles/Dashboard.module.css";
 import MyMap from "./Map";
 import KeyPoints from "./KeyPoints";
-import RecentActivity from "./ActivityTrend";
-
+import RecentActivity from "./ActivityTrend"
 const Dashboard = () => {
   const Points = [
     {
@@ -16,45 +15,29 @@ const Dashboard = () => {
       Name: "Total Animals Tracked",
     },
   ];
-
   return (
-    <div className={`bg-dark ${styles.dashboard}`}> 
-      <div className={styles.containerGrid}>
-        {/* Left: Map */}
-        <div className={styles.leftPanel}>
-          <div className={styles.MapCon}>
-            <h1 className={styles.heading}>Endangered Species Tracking</h1>
-            <MyMap />
-            <div className={styles.Search}>
-              <input
-                type="text"
-                placeholder="Search for species or location ..."
-              />
-            </div>
-          </div>
+    <div className={`bg-dark ${styles.dashboard}`}>
+      <div className={styles.MapCon}>
+        <h1 className={styles.heading}>Endangered Species Tracking</h1>
+        <MyMap />
+        <div className={styles.Search}>
+          <input type="text" placeholder="Search for species or location ..." />
         </div>
-
-        {/* Right: Sidebar (Key points, Zone, Activity) */}
-        <aside className={styles.rightPanel}>
-          <h2 className={styles.sideHeading}>Key Data Points</h2>
-          <div className={styles.KeypointsCon}>
-            {Points.map((point) => {
-              return <KeyPoints key={point.id} No={point.No} Name={point.Name} />;
-            })}
-          </div>
-
-          <div className={styles.Zone}>
-            <p className="text-white small">Most Active Zone</p>
-            <h3 className={styles.zoneHeading}>Amazon Rainforest</h3>
-          </div>
-
-          <div className={styles.Trend}>
-            <RecentActivity />
-          </div>
-        </aside>
+      </div>
+      <h1 className={styles.heading}>Key Data Points</h1>
+      <div className={styles.KeypointsCon}>
+        {Points.map((point) => {
+          return <KeyPoints key={point.id} No={point.No} Name={point.Name} />;
+        })}
+      </div>
+      <div className={styles.Zone}>
+        <p className="text-white">Most Active Zone</p>
+        <h1 className={styles.heading}>Amazon Rainforest</h1>
+      </div>
+      <div className={styles.Trend}>
+        <RecentActivity/>
       </div>
     </div>
   );
 };
-
 export default Dashboard;
