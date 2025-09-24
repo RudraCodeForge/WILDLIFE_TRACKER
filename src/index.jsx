@@ -16,6 +16,7 @@ import TrackedAnimals from "./components/TrackedAnimals";
 import Overview from "./components/Overview";
 import Dashboard from "./components/Dashboard";
 import "bootstrap/dist/css/bootstrap.min.css";
+import AboutUs from "./components/AboutUs";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 const router = createBrowserRouter([
@@ -80,6 +81,10 @@ const router = createBrowserRouter([
       {
         path:"/dashboard",
         element: <Dashboard/>
+      },
+      {
+        path:"/aboutus",
+        element: <AboutUs/>
       }
     ],
   },

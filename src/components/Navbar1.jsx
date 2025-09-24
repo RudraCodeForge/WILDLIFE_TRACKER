@@ -43,8 +43,14 @@ const Navbar1 = () => {
                 Species
               </Link>
               <Link
+                to="/aboutus"
+                className={`${styles.LLink} ${Location === "/aboutus" ? styles.LActive : ""}`}
+              >
+                About Us
+              </Link>
+              <Link
                 to="/contactus"
-                className={`${styles.LLink} ${Location === "/species" ? styles.LActive : ""}`}
+                className={`${styles.LLink} ${Location === "/contactus" ? styles.LActive : ""}`}
               >
                 Contact Us
               </Link>
@@ -116,6 +122,12 @@ const Navbar1 = () => {
                 className={`${styles.Link} ${Location === "/contactus" ? styles.Active : ""}`}
               >
                 Contact Us
+              </Link>
+              <Link
+                to="/aboutus"
+                className={`${styles.Link} ${Location === "/aboutus" ? styles.Active : ""}`}
+              >
+                About Us
               </Link>
               <Link
                 to="/profile"

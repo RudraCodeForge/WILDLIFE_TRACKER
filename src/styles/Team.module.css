@@ -1,0 +1,12 @@
+.TeamCon{
+  text-align:center;
+  padding:10px;
+}
+.TeamImg{
+  border-radius:50%;
+  border:1px solid white;
+}
+.TeamName,.Role{
+  margin:0;
+  color:white;
+}

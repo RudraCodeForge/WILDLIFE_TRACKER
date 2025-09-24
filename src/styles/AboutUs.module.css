@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+.Header{
+  color:white;
+  width:100%;
+  min-height:70vh;
+  background-image: url("../assets/bgimg1.jpg");
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  text-align:center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+.Heading{
+  letter-spacing:1px;
+  font-weight: 800;
+  font-family: 'Alfa Slab One', serif;
+}
+.Desc{
+  font-family: "Audiowide", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.AboutUsContent{
+  color:white;
+  width:100%;
+  text-align:center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+.TeamCon{
+  justify-content:space-between;
+  display: flex;
+}
