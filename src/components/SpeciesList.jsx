@@ -1,6 +1,9 @@
 import styles from "../styles/SpeciesList.module.css";
+import { IoMdAddCircleOutline } from "react-icons/io";
 import Species from "./Species";
+import { Link } from "react-router-dom";
 const SpeciesList = () => {
+  const Role = "admin";
   const species = [
     {
       id: 1,
@@ -53,19 +56,26 @@ const SpeciesList = () => {
     },
   ];
   return (
-    <div className="bg-dark">
+    <div className={`bg-dark ${styles.container}`}>
       <h1 className={styles.Heading}>Tracked Species</h1>
       {species.map((species) => {
         return (
-          <Species 
-            key={species.id} 
+          <Species
+            key={species.id}
             Image={species.Image}
             Name={species.Name}
             ScientificName={species.ScientificName}
             Status={species.Status}
-            />
+          />
         );
       })}
+      {Role === "admin" && (
+        <div className={styles.AddBtnCon}>
+          <Link to="/add-species" className={styles.AddBtn}>
+            <IoMdAddCircleOutline size={30} /> Add Species
+          </Link>
+        </div>
+      )}
     </div>
   );
 };

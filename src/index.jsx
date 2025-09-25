@@ -15,6 +15,7 @@ import Profile from "./components/Profile";
 import TrackedAnimals from "./components/TrackedAnimals";
 import Overview from "./components/Overview";
 import Dashboard from "./components/Dashboard";
+import AdminDashboard from "./components/AdminDashboard";
 import "bootstrap/dist/css/bootstrap.min.css";
 import AboutUs from "./components/AboutUs";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
@@ -85,7 +86,19 @@ const router = createBrowserRouter([
       {
         path:"/aboutus",
         element: <AboutUs/>
-      }
+      },
+      {
+        path:"/admin-profile",
+        element: <Profile/>
+      },
+      {
+        path: "/admin-species",
+        element: <SpeciesList />
+      },
+      {
+        path: "/admin-dashboard",
+        element: <AdminDashboard/>
+      },
     ],
   },
   {

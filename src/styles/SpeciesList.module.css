@@ -1,3 +1,6 @@
+.container{
+  padding-bottom:30px;
+}
 .Heading{
   color:lime;
   padding:20px 10px;
@@ -6,7 +9,7 @@
   background-color: #1a1a1a;
   border-radius: 12px;
   padding: 15px 20px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   color: #fff;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
 }
@@ -61,4 +64,15 @@
 
 .vu {
   background-color: #f1c40f !important; /* Vulnerable */
+}
+.AddBtnCon{
+  text-align:right;
+}
+.AddBtn{
+  margin: 50px 10px;
+  background-color: #00ff4c;
+  border-radius:10px;
+  padding:10px 20px;
+  text-decoration:none;
+  color:white;
 }

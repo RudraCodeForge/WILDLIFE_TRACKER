@@ -6,13 +6,33 @@ import { Link, useLocation } from "react-router-dom";
 const Navbar1 = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
-  const status = true;
+
+  const status = true; // logged in status
+  const Role = "admin"; // "user" or "admin"
   const Location = useLocation().pathname;
 
+  // Links for users and admins
+  const userLinks = [
+    { to: "/", label: "Home" },
+    { to: "/dashboard", label: "Dashboard" },
+    { to: "/species", label: "Species" },
+    { to: "/aboutus", label: "About Us" },
+    { to: "/contactus", label: "Contact Us" },
+    { to: "/profile", label: "Profile", paths: ["/profile", "/profile/tracked-animals", "/profile/missions", "/profile/overview"] },
+  ];
+
+  const adminLinks = [
+    { to: "/admin-dashboard", label: "Admin Dashboard" },
+    { to: "/manage-users", label: "Manage Users" },
+    { to: "/reports", label: "Reports" },
+    { to: "/admin-profile", label: "Profile" },
+    { to: "/admin-species", label: "Species" },
+  ];
+
+  const linksToRender = Role === "user" ? userLinks : Role === "admin" ? adminLinks : [];
+
   return (
-    <div
-      className={`bg-dark ${styles.Navbar1} ${isOpen ? styles.expanded : ""}`}
-    >
+    <div className={`bg-dark ${styles.Navbar1} ${isOpen ? styles.expanded : ""}`}>
       <div className={styles.NavbarTop}>
         {/* Logo Left */}
         <div className={styles.LogoCon}>
@@ -20,45 +40,32 @@ const Navbar1 = () => {
           <p className={styles.LogoText}>Wildlife Tracker</p>
         </div>
 
-        {/* Center Links (for Desktop) */}
+        {/* Center Links (Desktop) */}
         {status ? (
           <>
             <div className={styles.LaptopLinks}>
-              <Link
-                to="/"
-                className={`${styles.LLink} ${Location === "/" ? styles.LActive : ""}`}
-              >
-                Home
-              </Link>
-              <Link
-                to="/dashboard"
-                className={`${styles.LLink} ${Location === "/dashboard" ? styles.LActive : ""}`}
-              >
-                Dashboard
-              </Link>
-              <Link
-                to="/species"
-                className={`${styles.LLink} ${Location === "/species" ? styles.LActive : ""}`}
-              >
-                Species
-              </Link>
-              <Link
-                to="/aboutus"
-                className={`${styles.LLink} ${Location === "/aboutus" ? styles.LActive : ""}`}
-              >
-                About Us
-              </Link>
-              <Link
-                to="/contactus"
-                className={`${styles.LLink} ${Location === "/contactus" ? styles.LActive : ""}`}
-              >
-                Contact Us
-              </Link>
+              {linksToRender.map(link => (
+                <Link
+                  key={link.to}
+                  to={link.to}
+                  className={`${styles.LLink} ${
+                    link.paths
+                      ? link.paths.includes(Location)
+                        ? styles.LActive
+                        : ""
+                      : Location === link.to
+                      ? styles.LActive
+                      : ""
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
             </div>
 
-            {/* Profile Right */}
+            {/* Profile / Alerts */}
             <div className={styles.ProfileCon}>
-              <Link to="/profile">
+              <Link to={Role === "user" ? "/profile" : "/admin-profile"}>
                 <img
                   src="/me.jpg"
                   alt="profile"
@@ -68,7 +75,7 @@ const Navbar1 = () => {
                 />
               </Link>
               <Link to="/alerts" className={styles.Alert}>
-                <FaRegBell size={24}/>
+                <FaRegBell size={24} />
               </Link>
             </div>
           </>
@@ -83,7 +90,7 @@ const Navbar1 = () => {
           </div>
         )}
 
-        {/* Hamburger (for Mobile) */}
+        {/* Hamburger (Mobile) */}
         <div
           className={`${styles.Hamburger} ${isOpen ? styles.active : ""}`}
           onClick={toggleMenu}
@@ -98,47 +105,23 @@ const Navbar1 = () => {
       {isOpen && (
         <div className={styles.LinksCon}>
           {status ? (
-            <>
+            linksToRender.map(link => (
               <Link
-                to="/"
-                className={`${styles.Link} ${Location === "/" ? styles.Active : ""}`}
+                key={link.to}
+                to={link.to}
+                className={`${styles.Link} ${
+                  link.paths
+                    ? link.paths.includes(Location)
+                      ? styles.Active
+                      : ""
+                    : Location === link.to
+                    ? styles.Active
+                    : ""
+                }`}
               >
-                Home
+                {link.label}
               </Link>
-              <Link
-                to="/dashboard"
-                className={`${styles.Link} ${Location === "/dashboard" ? styles.Active : ""}`}
-              >
-                Dashboard
-              </Link>
-              <Link
-                to="/species"
-                className={`${styles.Link} ${Location === "/species" ? styles.Active : ""}`}
-              >
-                Species
-              </Link>
-              <Link
-                to="/contactus"
-                className={`${styles.Link} ${Location === "/contactus" ? styles.Active : ""}`}
-              >
-                Contact Us
-              </Link>
-              <Link
-                to="/aboutus"
-                className={`${styles.Link} ${Location === "/aboutus" ? styles.Active : ""}`}
-              >
-                About Us
-              </Link>
-              <Link
-                to="/profile"
-                className={`
-                ${styles.Link} 
-                ${["/profile", "/profile/tracked-animals", "/profile/missions", "/profile/overview"].includes(Location) ? styles.Active : ""}`}
-
-              >
-                Profile
-              </Link>
-            </>
+            ))
           ) : (
             <>
               <Link
