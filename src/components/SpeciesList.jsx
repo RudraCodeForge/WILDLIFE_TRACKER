@@ -66,6 +66,8 @@ const SpeciesList = () => {
             Name={species.Name}
             ScientificName={species.ScientificName}
             Status={species.Status}
+            Link={`/species/${species.id}`}
+            LinkName={"View Details →"}
           />
         );
       })}

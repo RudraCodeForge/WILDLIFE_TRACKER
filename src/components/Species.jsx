@@ -1,5 +1,5 @@
 import styles from "../styles/SpeciesList.module.css";
-
+import { Link } from "react-router-dom";
 const Species = (props) => {
   return (
     <div className={`${styles.card} d-flex align-items-center justify-content-between`}>
@@ -30,9 +30,9 @@ const Species = (props) => {
           {props.Status}
         </span>
         <div>
-          <a href="#" className={styles.details}>
-            View Details →
-          </a>
+          <Link to={props.Link} className={styles.details}>
+            {props.LinkName}
+          </Link>
         </div>
       </div>
     </div>

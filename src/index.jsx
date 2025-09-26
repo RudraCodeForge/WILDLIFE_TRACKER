@@ -20,6 +20,8 @@ import AdminDashboard from "./components/AdminDashboard";
 import {ActivityData} from "./components/AdminDashboard";
 import "bootstrap/dist/css/bootstrap.min.css";
 import AboutUs from "./components/AboutUs";
+import UserList from "./components/UserList";
+import {Users} from "./components/UserList";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 const router = createBrowserRouter([
@@ -102,6 +104,11 @@ const router = createBrowserRouter([
         path: "/admin-dashboard",
         element: <AdminDashboard/>,
         loader:ActivityData,
+      },
+      {
+        path: "/manage-users",
+        element: <UserList/>,
+        loader:Users,
       },
     ],
   },

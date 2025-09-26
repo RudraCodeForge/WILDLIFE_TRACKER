@@ -42,12 +42,23 @@ const AdminDashboard = () => {
         );
       })}
       <h1 className={styles.heading}>Recent Activities</h1>
-      
+      <div className={styles.ACon}>
+        {Activity.map((act) => {
+          return (
+            <Activities
+              key={act.id}
+              Name={act.Name}
+              Activity={act.Activity}
+              Date={act.Date}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 };
 export const ActivityData = () => {
-  return fetch("https://dummyjson.com/c/1e0c-19ad-4ad1-8fa2")
+  return fetch("https://dummyjson.com/c/6edb-f097-42f3-85c4")
     .then((res) => res.json())
     .then((data) => {
       return data;
