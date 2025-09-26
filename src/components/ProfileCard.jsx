@@ -27,7 +27,7 @@ const ProfileCard = (props) => {
           </div>
           <div>
             <p className={styles.Name}>{props.Name}</p>
-            <p className={styles.Username}>{props.Username}</p>
+            <p className={styles.Username}>@{props.Username}</p>
           </div>
         </div>
       </div>

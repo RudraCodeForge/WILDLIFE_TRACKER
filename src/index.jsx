@@ -12,10 +12,12 @@ import PrivacyPolicy from "./components/PrivacyPolicy";
 import ContactUs from "./components/ContactUs";
 import SpeciesList from "./components/SpeciesList";
 import Profile from "./components/Profile";
+import { FetchProfile } from "./components/Profile";
 import TrackedAnimals from "./components/TrackedAnimals";
 import Overview from "./components/Overview";
 import Dashboard from "./components/Dashboard";
 import AdminDashboard from "./components/AdminDashboard";
+import {ActivityData} from "./components/AdminDashboard";
 import "bootstrap/dist/css/bootstrap.min.css";
 import AboutUs from "./components/AboutUs";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
@@ -89,7 +91,8 @@ const router = createBrowserRouter([
       },
       {
         path:"/admin-profile",
-        element: <Profile/>
+        element: <Profile/>,
+        loader: FetchProfile,
       },
       {
         path: "/admin-species",
@@ -97,7 +100,8 @@ const router = createBrowserRouter([
       },
       {
         path: "/admin-dashboard",
-        element: <AdminDashboard/>
+        element: <AdminDashboard/>,
+        loader:ActivityData,
       },
     ],
   },

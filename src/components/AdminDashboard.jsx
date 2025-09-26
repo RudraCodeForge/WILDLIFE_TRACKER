@@ -2,8 +2,11 @@ import styles from "../styles/AdminDashboard.module.css";
 import KeyPoints from "./KeyPoints";
 import { SiReactivex } from "react-icons/si";
 import { FaUsers } from "react-icons/fa";
+import Activities from "./Activities";
+import { useLoaderData } from "react-router-dom";
 import { BsClipboard2DataFill } from "react-icons/bs";
 const AdminDashboard = () => {
+  const Activity = useLoaderData();
   const Points = [
     {
       id: 1,
@@ -38,7 +41,16 @@ const AdminDashboard = () => {
           />
         );
       })}
+      <h1 className={styles.heading}>Recent Activities</h1>
+      
     </div>
   );
+};
+export const ActivityData = () => {
+  return fetch("https://dummyjson.com/c/1e0c-19ad-4ad1-8fa2")
+    .then((res) => res.json())
+    .then((data) => {
+      return data;
+    });
 };
 export default AdminDashboard;

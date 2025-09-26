@@ -2,15 +2,10 @@ import ProfileCard from "./ProfileCard";
 import styles from "../styles/Profile.module.css";
 import ProfileLinks from "./ProfileLinks";
 import KeyPoints from "./KeyPoints";
-import {Outlet} from "react-router-dom";
+import { Outlet,useLoaderData } from "react-router-dom";
 const Profile = () => {
+  const User= useLoaderData();
   const user = {
-    ProfileImg: "/me.jpg",
-    Name: "Prince Daksh",
-    Username: "@Rudra",
-    Badge: "Developer",
-    Email: "jitandradaksh533@gmail.com",
-    Phone: "+91 790626XXXX",
     Exprience: "4+ years of experience",
     Followers: "2.5M",
     Following: "389",
@@ -32,20 +27,25 @@ const Profile = () => {
   return (
     <div className={`bg-dark ${styles.Container}`}>
       <ProfileCard
-        Name={user.Name}
-        Username={user.Username}
-        Badge={user.Badge}
-        Email={user.Email}
-        Phone={user.Phone}
+        Name={User.firstName}
+        Username={User.username}
+        Badge={User.company.title}
+        Email={User.email}
+        Phone={User.phone}
         Experience={user.Exprience}
         Followers={user.Followers}
         Following={user.Following}
-        ProfileImg={user.ProfileImg}
+        ProfileImg={User.image}
       />
       <div className={styles.KeypointsCon}>
         {activities.map((activity, index) => {
           return (
-            <KeyPoints key={index} No={activity.No} Name={activity.Name} PassedWidth={"30vw"}/>
+            <KeyPoints
+              key={index}
+              No={activity.No}
+              Name={activity.Name}
+              PassedWidth={"30vw"}
+            />
           );
         })}
       </div>
@@ -54,6 +54,14 @@ const Profile = () => {
     </div>
   );
 };
+
+export const FetchProfile = () => {
+  return fetch("https://dummyjson.com/users/2")
+    .then((res) => res.json())
+    .then((data) => {
+      return data; // return data if you want to use it later
+    })
+    .catch((err) => console.error("Error fetching profile:", err));
+};
+
 export default Profile;
-
-

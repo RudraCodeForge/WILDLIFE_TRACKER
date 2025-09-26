@@ -1,0 +1,14 @@
+
+.Container{
+  padding:10px;
+  border-bottom:2px solid white;
+} 
+.heading,
+.activity,
+.date{
+  margin:0;
+  color:white;
+}
+.date{
+  text-align:right;
+}
