@@ -22,11 +22,11 @@ const Navbar1 = () => {
   ];
 
   const adminLinks = [
-    { to: "/admin-dashboard", label: "Admin Dashboard" },
-    { to: "/manage-users", label: "Manage Users" },
-    { to: "/reports", label: "Reports" },
-    { to: "/admin-profile", label: "Profile" },
-    { to: "/admin-species", label: "Species" },
+    { to: "/admin/dashboard", label: "Admin Dashboard" },
+    { to: "/admin/manage-users", label: "Manage Users" },
+    { to: "/admin/reports", label: "Reports" },
+    { to: "/admin/profile", label: "Profile" },
+    { to: "/admin/species", label: "Species" },
   ];
 
   const linksToRender = Role === "user" ? userLinks : Role === "admin" ? adminLinks : [];

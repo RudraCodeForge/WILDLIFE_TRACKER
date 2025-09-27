@@ -21,6 +21,7 @@ import {ActivityData} from "./components/AdminDashboard";
 import "bootstrap/dist/css/bootstrap.min.css";
 import AboutUs from "./components/AboutUs";
 import UserList from "./components/UserList";
+import Reports from "./components/Reports";
 import {Users} from "./components/UserList";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
@@ -92,23 +93,27 @@ const router = createBrowserRouter([
         element: <AboutUs/>
       },
       {
-        path:"/admin-profile",
+        path:"/admin/profile",
         element: <Profile/>,
         loader: FetchProfile,
       },
       {
-        path: "/admin-species",
+        path: "/admin/species",
         element: <SpeciesList />
       },
       {
-        path: "/admin-dashboard",
+        path: "/admin/dashboard",
         element: <AdminDashboard/>,
         loader:ActivityData,
       },
       {
-        path: "/manage-users",
+        path: "/admin/manage-users",
         element: <UserList/>,
         loader:Users,
+      },
+      {
+        path: "/admin/reports",
+        element: <Reports />
       },
     ],
   },
