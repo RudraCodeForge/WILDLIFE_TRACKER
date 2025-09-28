@@ -1,25 +1,13 @@
 import React from 'react';
 import styles from '../styles/Dashboard.module.css';
 
-const activityData = [
-  { day: 'Mon', value: 100},
-  { day: 'Tue', value: 45 },
-  { day: 'Wed', value: 20 },
-  { day: 'Thu', value: 60 },
-  { day: 'Fri', value: 80 },
-  { day: 'Sat', value: 95 },
-  { day: 'Sun', value: 55 }
-];
-
-const totalMax = 100;
-
-const RecentActivity = () => {
+const RecentActivity = ({name,desc,activityData,totalMax,check}) => {
   return (
     <div className="card my-4 bg-dark text-white">
       <div className="card-body">
         <div className="d-flex justify-content-between align-items-center mb-3">
-          <h5 className="card-title">Recent Activity</h5>
-          <p className="h6 text-success">+15% Last 7 Days</p>
+          <h5 className="card-title">{name}</h5>
+          <p className={`h6 ${check ? "text-success" : "text-danger"}`}>{desc}</p>
         </div>
         <div className={styles.activityChartContainer}>
           {activityData.map((item, index) => {

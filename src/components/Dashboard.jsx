@@ -1,8 +1,27 @@
 import styles from "../styles/Dashboard.module.css";
 import MyMap from "./Map";
 import KeyPoints from "./KeyPoints";
-import RecentActivity from "./ActivityTrend"
+import RecentActivity from "./ActivityTrend";
 const Dashboard = () => {
+  const activityData = [
+    { day: "Mon", value: 100 },
+    { day: "Tue", value: 45 },
+    { day: "Wed", value: 20 },
+    { day: "Thu", value: 60 },
+    { day: "Fri", value: 80 },
+    { day: "Sat", value: 95 },
+    { day: "Sun", value: 55 },
+  ];
+
+  const totalMax = 100;
+  const firstValue = activityData[0].value;
+  const lastValue = activityData[activityData.length - 1].value;
+  const difference = lastValue - firstValue;
+  const Percent= (difference/firstValue)*100;
+  const PercentRounded = Percent.toFixed(1);
+  const Check = PercentRounded >= 0;
+  const displayPercent = (Check ? "+" : "") + PercentRounded + "%";
+  
   const Points = [
     {
       id: 1,
@@ -35,7 +54,12 @@ const Dashboard = () => {
         <h1 className={styles.heading}>Amazon Rainforest</h1>
       </div>
       <div className={styles.Trend}>
-        <RecentActivity/>
+        <RecentActivity
+          name={"Recent Activity"}
+          desc={`${displayPercent} Last 7 Days`}
+          activityData={activityData}
+          totalMax={totalMax}
+        />
       </div>
     </div>
   );

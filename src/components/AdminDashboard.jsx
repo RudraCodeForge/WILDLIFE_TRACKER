@@ -3,16 +3,11 @@ import KeyPoints from "./KeyPoints";
 import { SiReactivex } from "react-icons/si";
 import { FaUsers } from "react-icons/fa";
 import Activities from "./Activities";
-import ImageSlider from "./ImageSlider";
 import { useLoaderData } from "react-router-dom";
 import { BsClipboard2DataFill } from "react-icons/bs";
 const AdminDashboard = () => {
   const Activity = useLoaderData();
-  const elephantImages = [
-    "https://images.unsplash.com/photo-1557050543-4d5f4e07ef46",
-    "https://images.unsplash.com/photo-1544211412-2a32426e7fd5",
-    "https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0",
-  ];
+  
   const Points = [
     {
       id: 1,
@@ -59,11 +54,6 @@ const AdminDashboard = () => {
             />
           );
         })}
-      </div>
-      <div className="container mt-4">
-        <h1>African Elephant</h1>
-        <ImageSlider images={elephantImages} />
-        {/* Baaki details jaise habitat, population, threats... */}
       </div>
     </div>
   );

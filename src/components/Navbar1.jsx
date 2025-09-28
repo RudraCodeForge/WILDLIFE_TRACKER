@@ -8,7 +8,7 @@ const Navbar1 = () => {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const status = true; // logged in status
-  const Role = "admin"; // "user" or "admin"
+  const Role = "user"; // "user" or "admin"
   const Location = useLocation().pathname;
 
   // Links for users and admins

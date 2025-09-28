@@ -1,0 +1,21 @@
+.Con{
+  border-radius:10px;
+  margin-top:20px;
+  padding:10px;
+  box-shadow:0 0 10px rgba(0,0,0,0.5);
+}
+.Basic{
+  display:flex;
+  justify-content:space-between;
+  padding:10px 10px 0 10px;
+  border-bottom:2px solid white;
+}
+.left,
+.right{
+  margin:0;
+  color:white;
+}
+.Heading,
+.Desc{
+  color:white;
+}

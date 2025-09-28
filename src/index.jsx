@@ -11,18 +11,19 @@ import TermsAndCondition from "./components/TermsAndCondition";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import ContactUs from "./components/ContactUs";
 import SpeciesList from "./components/SpeciesList";
+import SpecieDetails from "./components/SpecieDetails";
 import Profile from "./components/Profile";
 import { FetchProfile } from "./components/Profile";
 import TrackedAnimals from "./components/TrackedAnimals";
 import Overview from "./components/Overview";
 import Dashboard from "./components/Dashboard";
 import AdminDashboard from "./components/AdminDashboard";
-import {ActivityData} from "./components/AdminDashboard";
+import { ActivityData } from "./components/AdminDashboard";
 import "bootstrap/dist/css/bootstrap.min.css";
 import AboutUs from "./components/AboutUs";
 import UserList from "./components/UserList";
 import Reports from "./components/Reports";
-import {Users} from "./components/UserList";
+import { Users } from "./components/UserList";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 const router = createBrowserRouter([
@@ -44,81 +45,81 @@ const router = createBrowserRouter([
       },
       {
         path: "/forget_password",
-        element: <Forget_Passward />
+        element: <Forget_Passward />,
       },
       {
         path: "/termsandcondition",
-        element: <TermsAndCondition />
+        element: <TermsAndCondition />,
       },
       {
         path: "/privacypolicy",
-        element: <PrivacyPolicy />
+        element: <PrivacyPolicy />,
       },
       {
         path: "/contactus",
-        element: <ContactUs />
+        element: <ContactUs />,
       },
       {
         path: "/species",
-        element: <SpeciesList />
+        element: <SpeciesList />,
       },
       {
-        path:"/profile",
+        path: "/profile",
         element: <Profile />,
-        children:[
+        loader: FetchProfile,
+        children: [
           {
-            path:"/profile",
-            element: <Overview/>
+            path: "/profile",
+            element: <Overview />,
           },
           {
-            path:"/profile/overview",
-            element: <Overview/>
+            path: "/profile/overview",
+            element: <Overview />,
           },
           {
-            path:"/profile/tracked-animals",
-            element: <TrackedAnimals/>
+            path: "/profile/tracked-animals",
+            element: <TrackedAnimals />,
           },
           {
-            path:"/profile/missions",
-            element: <TrackedAnimals/>
-          }
-        ]
+            path: "/profile/missions",
+            element: <TrackedAnimals />,
+          },
+        ],
       },
       {
-        path:"/dashboard",
-        element: <Dashboard/>
+        path: "/dashboard",
+        element: <Dashboard />,
       },
       {
-        path:"/aboutus",
-        element: <AboutUs/>
+        path: "/aboutus",
+        element: <AboutUs />,
       },
       {
-        path:"/admin/profile",
-        element: <Profile/>,
+        path: "/admin/profile",
+        element: <Profile />,
         loader: FetchProfile,
       },
       {
         path: "/admin/species",
         element: <SpeciesList />,
-        childern:[
-          {
-            path: "/admin/species/:id",
-          }
-        ]
+      },
+      {
+        path: "/admin/species/:id",
+        element: <SpecieDetails />,
       },
       {
         path: "/admin/dashboard",
-        element: <AdminDashboard/>,
-        loader:ActivityData,
+        element: <AdminDashboard />,
+        loader: ActivityData,
       },
       {
         path: "/admin/manage-users",
-        element: <UserList/>,
-        loader:Users,
+        element: <UserList />,
+        loader: Users,
       },
       {
         path: "/admin/reports",
-        element: <Reports />
+        element: <Reports />,
       },
     ],
   },
