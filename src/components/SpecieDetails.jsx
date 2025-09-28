@@ -1,9 +1,13 @@
+// SpecieDetails.js
+
 import styles from "../styles/SpecieDetails.module.css";
 import ImageSlider from "./ImageSlider";
 import RecentActivity from "./ActivityTrend";
 import BDetails from "./BDetails";
 import SData from "./SData";
+
 const SpecieDetails = () => {
+  // --- DATA REMAINS UNCHANGED ---
   const activityData = [
     { day: "Jan", value: 398000 },
     { day: "Feb", value: 120000 },
@@ -11,6 +15,7 @@ const SpecieDetails = () => {
     { day: "Apr", value: 380100 },
     { day: "May", value: 412000 },
     { day: "Jun", value: 395000 },
+    // You'll need more data points (like 12 months) to match the graph image
   ];
 
   const totalMax = 465000;
@@ -20,34 +25,38 @@ const SpecieDetails = () => {
   const Percent = (difference / firstValue) * 100;
   const PercentRounded = Percent.toFixed(1);
   const Check = PercentRounded >= 0;
+  // NOTE: Assuming 12 months for the text, I'll update the data text.
   const displayPercent = (Check ? "+" : "") + PercentRounded + "%";
+  
   const elephantImages = [
     "https://images.unsplash.com/photo-1557050543-4d5f4e07ef46",
     "https://images.unsplash.com/photo-1544211412-2a32426e7fd5",
     "https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0",
   ];
+  
   const SpecieData = [
     {
       id: 1,
       Name: "Habitat",
-      Value: `African elephants are the largest land animals on Earth, and they are
-          mainly found in sub-Saharan Africa. Their habitats vary widely
-          depending on the region and availability of food and water. They live
-          in savannas, grasslands, forests, and deserts.`,
+      Value: `African elephants inhabit a variety of climates, including savannas, grasslands, forests, and deserts. They require access to water and large amounts of vegetation for sustenance.`,
     },
     {
       id: 2,
       Name: "Geographic Range",
-      Value: `African elephants are found across sub-Saharan Africa, from West Africa to East and Southern Africa. They live in a variety of habitats, including savannas, grasslands, forests, and some desert regions. Their range depends on the availability of food, water, and suitable shelter, so they are mostly found near rivers, lakes, and areas with abundant vegetation.
-      `,
+      Value: `Found across sub-Saharan Africa, from the southern edge of the Sahara Desert to the northern parts of South Africa. Their range has been significantly reduced due to habitat loss and poaching.`,
     },
     {
       id: 3,
       Name: "Primary Threats",
-      Value: `African elephants face several threats that endanger their survival. The main threats include poaching for ivory, loss of habitat due to farming, logging, and human settlements, and human-elephant conflicts when elephants raid crops. Climate change and droughts also affect their access to water and food, making survival even harder.
-      `,
+      Value: `Poaching for ivory is the most significant threat to African elephants. Habitat loss due to agricultural expansion and human settlements also poses a major challenge.`,
     },
+    {
+        id: 4,
+        Name: "Conservation Efforts",
+        Value: `Conservation efforts include anti-poaching patrols, habitat protection and restoration, community engagement, and international trade regulations.`,
+      },
   ];
+  
   const BasicDetails = [
     {
       id: 1,
@@ -56,7 +65,7 @@ const SpecieDetails = () => {
     },
     {
       id: 2,
-      Name: "Status",
+      Name: "Conservation Status", 
       Value: "Vulnerable",
     },
     {
@@ -65,29 +74,55 @@ const SpecieDetails = () => {
       Value: "415,000",
     },
   ];
-  return (
-    <div className="container bg-dark pb-3 ">
-      <h1>African Elephant</h1>
-      <ImageSlider images={elephantImages} />
-      <div className={styles.Con}>
-        {BasicDetails.map((detail) => {
-          return (
-            <BDetails key={detail.id} Name={detail.Name} Value={detail.Value} />
-          );
-        })}
-      </div>
 
-      {SpecieData.map((data) => {
-        return <SData key={data.id} Name={data.Name} Value={data.Value} />;
-      })}
-      <div className={styles.Con}>
-        <RecentActivity
-          name={"Population Trend"}
-          check={Check}
-          desc={`${displayPercent} In Last 6 Months`}
-          activityData={activityData}
-          totalMax={totalMax}
-        />
+  return (
+    <div className="bg-dark pb-5 ">
+      <h1 className="text-white pt-3 pb-4">African Elephant</h1>
+      
+      {/* 1. Main Content Wrapper */}
+      <div className={styles.MainContentWrapper}>
+        
+
+          {/* Image and Basic Stats Wrapper */}
+          <div className={styles.ImageAndStatsWrapper}>
+            
+            {/* Image Slider */}
+            <div className={styles.ImageWrapper}>
+                <ImageSlider images={elephantImages} />
+            </div>
+
+            {/* Basic Details: HORIZONTAL Layout */}
+            <div className={styles.HorizontalStatsGrid}>
+                {BasicDetails.map((detail) => (
+                    // BDetails component ko ab horizontal grid item ki tarah style karenge
+                    <BDetails key={detail.id} Name={detail.Name} Value={detail.Value} />
+                ))}
+            </div>
+          </div>
+          
+          {/* Main Grid for SData and Trend Chart */}
+          <div className={styles.SDataAndTrendGrid}>
+              
+              {/* SData Content: Top two rows (Habitat, Range, Threats, Efforts) */}
+              <div className={styles.SDataGrid}>
+                  {SpecieData.map((data) => (
+                      <div key={data.id} className={`${styles.Con} ${styles.SDataBox}`}>
+                          <SData Name={data.Name} Value={data.Value} />
+                      </div>
+                  ))}
+              </div>
+
+              {/* Activity Trend Chart (Bottom full width) */}
+              <div className={`${styles.Con} ${styles.TrendChart}`}>
+                  <RecentActivity
+                      name={"Population Trends"}
+                      check={Check}
+                      desc={`${displayPercent} Last 6 Months`} // Updated to 6 months as per data
+                      activityData={activityData}
+                      totalMax={totalMax}
+                  />
+              </div>
+          </div>
       </div>
     </div>
   );
