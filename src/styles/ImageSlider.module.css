@@ -1,0 +1,52 @@
+.sliderWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 600px; /* Desktop me max width */
+  margin: auto;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.sliderContainer {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.sliderImage {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+}
+
+/* Arrow Buttons */
+.arrowBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0,0,0,0.5);
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.arrowLeft {
+  left: 10px;
+}
+
+.arrowRight {
+  right: 10px;
+}
+
+/* Hide arrows on mobile (swipe enabled) */
+@media (max-width: 768px) {
+  .arrowBtn {
+    display: none;
+  }
+  .sliderImage {
+    height: 250px;
+  }
+}

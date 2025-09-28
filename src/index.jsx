@@ -99,7 +99,12 @@ const router = createBrowserRouter([
       },
       {
         path: "/admin/species",
-        element: <SpeciesList />
+        element: <SpeciesList />,
+        childern:[
+          {
+            path: "/admin/species/:id",
+          }
+        ]
       },
       {
         path: "/admin/dashboard",
