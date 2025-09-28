@@ -91,6 +91,10 @@ const router = createBrowserRouter([
         element: <Dashboard />,
       },
       {
+        path: "/species/:id",
+        element: <SpecieDetails />,
+      },
+      {
         path: "/aboutus",
         element: <AboutUs />,
       },

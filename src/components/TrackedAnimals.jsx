@@ -59,6 +59,8 @@ const TrackedAnimals = () => {
               Name={species.Name}
               ScientificName={species.ScientificName}
               Status={species.Status}
+              Link={`/species/${species.id}`}
+              LinkName={"View Details →"}
             />
           ))
         : missions.map((mission) => (
@@ -68,6 +70,8 @@ const TrackedAnimals = () => {
               Name={mission.Name}
               ScientificName={mission.ScientificName}
               Status={mission.Status}
+              Link={`/mission/${mission.id}`}
+              LinkName={"View Mission →"}
             />
           ))}
     </div>
