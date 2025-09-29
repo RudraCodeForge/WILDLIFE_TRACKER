@@ -59,6 +59,7 @@
 /* 🚀 2. HORIZONTAL STATS GRID (Scientific Name, Status, Population) 🚀 */
 /* ======================================================= */
 .HorizontalStatsGrid {
+    margin-top:20px;
     display: grid;
     /* Three columns for the stats. Using minmax for better control */
     background-color: #242424; /* Background for the stat bar */
