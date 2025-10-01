@@ -1,8 +1,14 @@
 import styles from "../styles/AboutUs.module.css";
 import Team from "./Team";
 import KeyPoints from "./KeyPoints";
+import {useSelector} from "react-redux";
+import {Navigate} from "react-router-dom";
 import { GiEarthAfricaEurope } from "react-icons/gi";
 const AboutUs = () => {
+  const {isLoggedIn} = useSelector((store)=>store.SignUp);
+  if(!isLoggedIn){
+    return <Navigate to="/login" replace />;
+  }
   const Points = [
     {
       id: 1,
