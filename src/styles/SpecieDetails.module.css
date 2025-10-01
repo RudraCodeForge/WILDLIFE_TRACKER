@@ -1,75 +1,58 @@
-/* SpecieDetails.module.css */
 
-/* --- General Container Styling --- */
 .container {
   max-width: 1300px;
   margin: 0 auto; 
   padding: 0 20px; 
 }
 
-/* --- Shared Animated Container (Used for SData and RecentActivity) --- */
 .Con {
   border-radius: 10px;
   padding: 20px; 
   background-color: #242424;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); 
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  height: 100%; /* Important for SData grid alignment */
+  height: 100%; 
 }
 
 .Con:hover {
   transform: translateY(-3px); 
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.6); 
 }
-
-/* ======================================================= */
-/* 🚀 1. MAIN GRID LAYOUT (Image/Stats + SData/Trend) 🚀 */
-/* ======================================================= */
 .MainContentWrapper {
     display: grid;
-    /* Desktop: 1.5fr for Image/Stats, 2fr for Content/Trend */
     grid-template-columns: 1.5fr 2fr; 
     gap: 30px;
     align-items: start;
 }
 
-/* Mobile: Stack columns */
 @media (max-width: 1024px) {
     .MainContentWrapper {
-        grid-template-columns: 1fr; /* Single column */
+        grid-template-columns: 1fr; 
         gap: 20px;
     }
 }
 
-/* --- Image and Stats Wrapper --- */
+
 .ImageAndStatsWrapper {
     display: flex;
     flex-direction: column;
-    gap: 0; /* No space needed here, gap is in MainContentWrapper */
+    gap: 0; 
 }
 
-/* --- Image Slider Wrapper --- */
 .ImageWrapper {
     overflow: hidden;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
-
-/* ======================================================= */
-/* 🚀 2. HORIZONTAL STATS GRID (Scientific Name, Status, Population) 🚀 */
-/* ======================================================= */
 .HorizontalStatsGrid {
     margin-top:20px;
     display: grid;
-    /* Three columns for the stats. Using minmax for better control */
-    background-color: #242424; /* Background for the stat bar */
+    background-color: #242424; 
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-    overflow: hidden; /* To contain BDetails styling */
-}
-
-/* BDetails component styling (the individual cells) */
+    overflow: hidden;
+} 
 .Basic {
   display: flex;
   flex-direction: column;
@@ -77,18 +60,16 @@
   align-items: center;
   padding: 10px 5px;
   text-align: center;
-  /* Adding vertical dividers */
   border-left: 1px solid rgba(255, 255, 255, 0.1); 
 }
 .Basic:first-child {
-    border-left: none; /* First item doesn't need left border */
+    border-left: none; 
 }
 
-/* Mobile adjustment: Stack BDetails if screen is too small */
 @media (max-width: 600px) {
     .HorizontalStatsGrid {
         grid-template-columns: 1fr;
-        border-radius: 10px; /* Full border-radius on mobile */
+        border-radius: 10px; 
     }
     .ImageWrapper {
         border-radius: 10px;
@@ -102,10 +83,6 @@
     }
 }
 
-/* ======================================================= */
-/* 3. SData AND TREND CHART GRID (Right Column Content) */
-/* ======================================================= */
-
 .SDataAndTrendGrid {
     display: flex;
     flex-direction: column;
@@ -114,7 +91,6 @@
 
 .SDataGrid {
     display: grid;
-    /* Two equal columns for SData blocks */
     grid-template-columns: 1fr 1fr;
     gap: 30px;
 }
@@ -125,17 +101,12 @@
     }
 }
 
-/* ======================================================= */
-/* 4. TYPOGRAPHY */
-/* ======================================================= */
-
-/* --- BDetails Typography (Labels and Values) --- */
 .left {
   margin:0;
   color:white;
   font-weight: 500;
   font-size: 0.9em;
-  opacity: 0.7; /* Label */
+  opacity: 0.7;
 }
 
 .right {
@@ -146,16 +117,15 @@
   margin-top: 3px;
 }
 
-/* Status Value Styling */
 .right.StatusValue {
-    background-color: #ff9800; /* Amber/Orange color for 'Vulnerable' */
+    background-color: #ff9800; 
     color: #111;
     padding: 2px 6px;
     border-radius: 4px;
     font-size: 0.85em;
 }
 
-/* --- SData Component Styling --- */
+
 .Heading {
   color: white;
   font-size: 1.4em;
@@ -164,11 +134,56 @@
 .Desc {
   color: white;
   line-height: 1.5;
-  font-size: 0.9em; /* Smaller for dense content */
+  font-size: 0.9em;
   opacity: 0.85;
+}
+
+/* Container padding for buttons */
+.btncon {
+    padding: 10px;
+    display: flex;
+    justify-content:space-around;
+    gap: 10px; /* buttons ke beech gap */
+    flex-wrap: wrap;
+}
+
+/* Common button styles */
+.BTN, .BTN1 {
+    width:150px;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+}
+
+/* Primary button */
+.BTN {
+    background-color: #3049ff;
+}
+
+.BTN:hover {
+    background-color: #243bbd;
+}
+
+/* Delete button */
+.BTN1 {
+    background-color: #ff4d4d; /* red color for delete */
+}
+
+.BTN1:hover {
+    background-color: #e63939;
 }
 @media (min-width:768px){
     .MainContentWrapper{
         display:flex;
+    }
+    .BTN,
+    .BTN1{
+        width:100%;
     }
 }

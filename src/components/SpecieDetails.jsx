@@ -1,23 +1,19 @@
-// SpecieDetails.js
-
 import styles from "../styles/SpecieDetails.module.css";
 import ImageSlider from "./ImageSlider";
 import RecentActivity from "./ActivityTrend";
 import BDetails from "./BDetails";
 import SData from "./SData";
-
+import { Link } from "react-router-dom";
 const SpecieDetails = () => {
-  // --- DATA REMAINS UNCHANGED ---
   const activityData = [
     { day: "Jan", value: 398000 },
     { day: "Feb", value: 120000 },
     { day: "Mar", value: 175000 },
     { day: "Apr", value: 380100 },
     { day: "May", value: 412000 },
-    { day: "Jun", value: 395000 },
-    // You'll need more data points (like 12 months) to match the graph image
+    { day: "Jun", value: 465000 },
   ];
-
+  const Role = "admin";
   const totalMax = 465000;
   const firstValue = activityData[0].value;
   const lastValue = activityData[activityData.length - 1].value;
@@ -25,15 +21,14 @@ const SpecieDetails = () => {
   const Percent = (difference / firstValue) * 100;
   const PercentRounded = Percent.toFixed(1);
   const Check = PercentRounded >= 0;
-  // NOTE: Assuming 12 months for the text, I'll update the data text.
   const displayPercent = (Check ? "+" : "") + PercentRounded + "%";
-  
+
   const elephantImages = [
     "https://images.unsplash.com/photo-1557050543-4d5f4e07ef46",
     "https://images.unsplash.com/photo-1544211412-2a32426e7fd5",
     "https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0",
   ];
-  
+
   const SpecieData = [
     {
       id: 1,
@@ -51,12 +46,12 @@ const SpecieDetails = () => {
       Value: `Poaching for ivory is the most significant threat to African elephants. Habitat loss due to agricultural expansion and human settlements also poses a major challenge.`,
     },
     {
-        id: 4,
-        Name: "Conservation Efforts",
-        Value: `Conservation efforts include anti-poaching patrols, habitat protection and restoration, community engagement, and international trade regulations.`,
-      },
+      id: 4,
+      Name: "Conservation Efforts",
+      Value: `Conservation efforts include anti-poaching patrols, habitat protection and restoration, community engagement, and international trade regulations.`,
+    },
   ];
-  
+
   const BasicDetails = [
     {
       id: 1,
@@ -65,64 +60,69 @@ const SpecieDetails = () => {
     },
     {
       id: 2,
-      Name: "Conservation Status", 
+      Name: "Conservation Status",
       Value: "Vulnerable",
     },
     {
       id: 3,
       Name: "Population Estimate",
-      Value: "415,000",
+      Value: lastValue,
     },
   ];
 
   return (
     <div className="bg-dark pb-5 ">
       <h1 className="text-white pt-3 pb-4">African Elephant</h1>
-      
-      {/* 1. Main Content Wrapper */}
+
       <div className={styles.MainContentWrapper}>
-        
+        <div className={styles.ImageAndStatsWrapper}>
+          <div className={styles.ImageWrapper}>
+            <ImageSlider images={elephantImages} />
+          </div>
 
-          {/* Image and Basic Stats Wrapper */}
-          <div className={styles.ImageAndStatsWrapper}>
-            
-            {/* Image Slider */}
-            <div className={styles.ImageWrapper}>
-                <ImageSlider images={elephantImages} />
-            </div>
+          <div className={styles.HorizontalStatsGrid}>
+            {BasicDetails.map((detail) => (
+              <BDetails
+                key={detail.id}
+                Name={detail.Name}
+                Value={detail.Value}
+              />
+            ))}
+          </div>
 
-            {/* Basic Details: HORIZONTAL Layout */}
+          {Role === "admin" && (
             <div className={styles.HorizontalStatsGrid}>
-                {BasicDetails.map((detail) => (
-                    // BDetails component ko ab horizontal grid item ki tarah style karenge
-                    <BDetails key={detail.id} Name={detail.Name} Value={detail.Value} />
-                ))}
+              <div className={styles.btncon}>
+                <Link to="#" className={styles.BTN}>
+                  Edit Info
+                </Link>
+                <Link to="#" className={styles.BTN1}>
+                  Delete Species
+                </Link>
+              </div>
             </div>
-          </div>
-          
-          {/* Main Grid for SData and Trend Chart */}
-          <div className={styles.SDataAndTrendGrid}>
-              
-              {/* SData Content: Top two rows (Habitat, Range, Threats, Efforts) */}
-              <div className={styles.SDataGrid}>
-                  {SpecieData.map((data) => (
-                      <div key={data.id} className={`${styles.Con} ${styles.SDataBox}`}>
-                          <SData Name={data.Name} Value={data.Value} />
-                      </div>
-                  ))}
-              </div>
+          )}
+        </div>
 
-              {/* Activity Trend Chart (Bottom full width) */}
-              <div className={`${styles.Con} ${styles.TrendChart}`}>
-                  <RecentActivity
-                      name={"Population Trends"}
-                      check={Check}
-                      desc={`${displayPercent} Last 6 Months`} // Updated to 6 months as per data
-                      activityData={activityData}
-                      totalMax={totalMax}
-                  />
+        <div className={styles.SDataAndTrendGrid}>
+          <div className={styles.SDataGrid}>
+            {SpecieData.map((data) => (
+              <div key={data.id} className={`${styles.Con} ${styles.SDataBox}`}>
+                <SData Name={data.Name} Value={data.Value} />
               </div>
+            ))}
           </div>
+
+          <div className={`${styles.Con} ${styles.TrendChart}`}>
+            <RecentActivity
+              name={"Population Trends"}
+              check={Check}
+              desc={`${displayPercent} Last 6 Months`} // Updated to 6 months as per data
+              activityData={activityData}
+              totalMax={totalMax}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

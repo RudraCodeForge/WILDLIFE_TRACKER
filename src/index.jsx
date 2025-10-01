@@ -23,6 +23,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import AboutUs from "./components/AboutUs";
 import UserList from "./components/UserList";
 import Reports from "./components/Reports";
+import AddSpeciesForm from "./components/AddSpecies";
 import { Users } from "./components/UserList";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
@@ -125,6 +126,10 @@ const router = createBrowserRouter([
         path: "/admin/reports",
         element: <Reports />,
       },
+      {
+        path: "/admin/add-species",
+        element: <AddSpeciesForm />
+      }
     ],
   },
   {

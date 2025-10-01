@@ -34,7 +34,7 @@ const SpeciesList = () => {
 
       {Role === "admin" && (
         <div className={styles.AddBtnCon}>
-          <Link to="/add-species" className={styles.AddBtn}>
+          <Link to="/admin/add-species" className={styles.AddBtn}>
             <IoMdAddCircleOutline size={30} /> Add Species
           </Link>
         </div>

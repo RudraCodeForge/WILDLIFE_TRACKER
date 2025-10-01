@@ -2,13 +2,13 @@ import { useState } from "react";
 import { FaRegBell } from "react-icons/fa";
 import styles from "../styles/Navbar1.module.css";
 import { Link, useLocation } from "react-router-dom";
-
+import {useSelector} from "redux-router-dom";
 const Navbar1 = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  const status = true; // logged in status
-  const Role = "admin"; // "user" or "admin"
+  const {Status , Role } = useSelector((store)=>store.Signup)
+  
   const Location = useLocation().pathname;
 
   // Links for users and admins
@@ -41,7 +41,7 @@ const Navbar1 = () => {
         </div>
 
         {/* Center Links (Desktop) */}
-        {status ? (
+        {Status ? (
           <>
             <div className={styles.LaptopLinks}>
               {linksToRender.map(link => (
@@ -104,7 +104,7 @@ const Navbar1 = () => {
       {/* Mobile Links */}
       {isOpen && (
         <div className={styles.LinksCon}>
-          {status ? (
+          {Status ? (
             linksToRender.map(link => (
               <Link
                 key={link.to}
