@@ -2,32 +2,14 @@ import { useState } from "react";
 import { FaRegBell } from "react-icons/fa";
 import styles from "../styles/Navbar1.module.css";
 import { Link, useLocation } from "react-router-dom";
-import {useSelector} from "redux-router-dom";
+import { useSelector } from "react-redux";
 const Navbar1 = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  const {Status , Role } = useSelector((store)=>store.Signup)
+  const {isLoggedIn , Role,userLinks, adminLinks } = useSelector((store)=>store.SignUp)
   
   const Location = useLocation().pathname;
-
-  // Links for users and admins
-  const userLinks = [
-    { to: "/", label: "Home" },
-    { to: "/dashboard", label: "Dashboard" },
-    { to: "/species", label: "Species" },
-    { to: "/aboutus", label: "About Us" },
-    { to: "/contactus", label: "Contact Us" },
-    { to: "/profile", label: "Profile", paths: ["/profile", "/profile/tracked-animals", "/profile/missions", "/profile/overview"] },
-  ];
-
-  const adminLinks = [
-    { to: "/admin/dashboard", label: "Admin Dashboard" },
-    { to: "/admin/manage-users", label: "Manage Users" },
-    { to: "/admin/reports", label: "Reports" },
-    { to: "/admin/profile", label: "Profile" },
-    { to: "/admin/species", label: "Species" },
-  ];
 
   const linksToRender = Role === "user" ? userLinks : Role === "admin" ? adminLinks : [];
 
@@ -41,7 +23,7 @@ const Navbar1 = () => {
         </div>
 
         {/* Center Links (Desktop) */}
-        {Status ? (
+        {isLoggedIn ? (
           <>
             <div className={styles.LaptopLinks}>
               {linksToRender.map(link => (
@@ -104,7 +86,7 @@ const Navbar1 = () => {
       {/* Mobile Links */}
       {isOpen && (
         <div className={styles.LinksCon}>
-          {Status ? (
+          {isLoggedIn ? (
             linksToRender.map(link => (
               <Link
                 key={link.to}

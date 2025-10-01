@@ -1,11 +1,14 @@
 import styles from "../styles/SpeciesList.module.css";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import Species from "./Species";
-import { Link } from "react-router-dom";
+import {useSelector} from "react-redux";
+import { Link, Navigate } from "react-router-dom";
 
 const SpeciesList = () => {
-  const Role = "admin";
-
+  const {Role,isLoggedIn} = useSelector((store)=>store.SignUp);
+  if(!isLoggedIn){
+    return <Navigate to="/login" replace />;
+  }
   const species = [
     { id: 1, Image: "/me.jpg", Name: "Lion", ScientificName: "Panthera leo", Status: "Critical" },
     { id: 2, Image: "/me.jpg", Name: "Tiger", ScientificName: "Panthera tigris", Status: "Endangered" },

@@ -1,9 +1,14 @@
 
 import styles from "../styles/SignUp.module.css";
-import { Link } from "react-router-dom";
+import { Link, Navigate} from "react-router-dom";
 import { useState } from "react";
+import {useSelector} from "react-redux";
 
 const SignUp = () => {
+  const {isLoggedIn} = useSelector((store)=>store.SignUp);
+  if(isLoggedIn){
+    return <Navigate to="/" replace />;
+  }
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',

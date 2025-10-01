@@ -2,28 +2,30 @@ import ProfileCard from "./ProfileCard";
 import styles from "../styles/Profile.module.css";
 import ProfileLinks from "./ProfileLinks";
 import KeyPoints from "./KeyPoints";
-import { Outlet,useLoaderData } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Navigate, Outlet, useLoaderData } from "react-router-dom";
+
 const Profile = () => {
-  const User= useLoaderData();
+  const { Role, isLoggedIn } = useSelector((store) => store.SignUp);
+  const User = useLoaderData();
+
   const user = {
     Exprience: "4+ years of experience",
     Followers: "2.5M",
     Following: "389",
   };
+
   const activities = [
-    {
-      No: 42,
-      Name: "Mission Completed",
-    },
-    {
-      No: 5,
-      Name: "Active Missions",
-    },
-    {
-      No: 128,
-      Name: "Animal Tracked.",
-    },
+    { No: 42, Name: "Mission Completed" },
+    { No: 5, Name: "Active Missions" },
+    { No: 128, Name: "Animal Tracked." },
   ];
+
+  // ✅ Automatic redirect if not logged in
+  if (!isLoggedIn) {
+    return <Navigate to="/login" replace />;
+  }
+
   return (
     <div className={`bg-dark ${styles.Container}`}>
       <ProfileCard
@@ -37,18 +39,18 @@ const Profile = () => {
         Following={user.Following}
         ProfileImg={User.image}
       />
-      <div className={styles.KeypointsCon}>
-        {activities.map((activity, index) => {
-          return (
+      {Role === "user" && (
+        <div className={styles.KeypointsCon}>
+          {activities.map((activity, index) => (
             <KeyPoints
               key={index}
               No={activity.No}
               Name={activity.Name}
               PassedWidth={"30vw"}
             />
-          );
-        })}
-      </div>
+          ))}
+        </div>
+      )}
       <ProfileLinks />
       <Outlet />
     </div>
@@ -58,9 +60,6 @@ const Profile = () => {
 export const FetchProfile = () => {
   return fetch("https://dummyjson.com/users/2")
     .then((res) => res.json())
-    .then((data) => {
-      return data; // return data if you want to use it later
-    })
     .catch((err) => console.error("Error fetching profile:", err));
 };
 

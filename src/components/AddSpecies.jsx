@@ -1,7 +1,15 @@
 import React, { useRef } from "react";
 import styles from "../styles/AddSpeciesForm.module.css";
-
+import {useSelector} from "react-redux";
+import { Navigate } from "react-router-dom";
 const AddSpeciesForm = () => {
+  const {Role,isLoggedIn} = useSelector((store)=>store.SignUp);
+  if(!isLoggedIn){
+    return <Navigate to="/login" replace />;
+  }
+  else if(Role !== "admin"){
+    return <Navigate to="/" replace />;
+  }
   const speciesNameRef = useRef(null);
   const scientificNameRef = useRef(null);
   const populationEstimateRef = useRef(null);

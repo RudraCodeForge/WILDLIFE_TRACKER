@@ -1,7 +1,15 @@
 import React, { useState } from "react";
 import styles from "../styles/Reports.module.css"; // Assuming your original import is correct
-
+import { useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
 const Reports = () => {
+  const { isLoggedIn, Role } = useSelector((store) => store.SignUp);
+  if (!isLoggedIn) {
+    return <Navigate to="/login" replace />;
+  } else if (Role !== "admin") {
+    return <Navigate to="/dashboard" replace />;
+  }
+  const{Report,Species,Conservational_Status,Format} = useSelector((store)=>store.Reports)
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
@@ -16,15 +24,19 @@ const Reports = () => {
 
     // Check if any value is empty or null/undefined
     for (const key in formProps) {
-        if (!formProps[key]) {
-            alert(`Error: Please select a value for '${key}'. All fields are required.`);
-            return;
-        }
+      if (!formProps[key]) {
+        alert(
+          `Error: Please select a value for '${key}'. All fields are required.`,
+        );
+        return;
+      }
     }
 
     // 2. Date Comparison Validation (End Date cannot be before Start Date)
     if (new Date(startDate) > new Date(endDate)) {
-      alert("Error: The End Date cannot be before the Start Date. Please adjust the dates.");
+      alert(
+        "Error: The End Date cannot be before the Start Date. Please adjust the dates.",
+      );
       return; // Stop the submission
     }
 
@@ -34,38 +46,19 @@ const Reports = () => {
     // You can now call your API to generate the report here
     // Example: generateReport(formProps);
   };
-
-  const Report = [
-    "Species Population",
-    "Environmental Impact",
-    "Camera Trap Summary",
-    "Human Wildlife Conflicts",
-    "Health & Mortality",
-    "Habitat Usage",
-    "Species Movement",
-    "Sighting Report",
-  ];
-  const Species = ["Loin", "Tiger", "Elephant", "Leopard", "Deer", "Peacock"];
-  const Conservational_Status = [
-    "All Status",
-    "Endangered",
-    "Vulnerable",
-    "Critically Endangered",
-  ];
-  const Format = ["PDF", "CSV", "EXCEL", "JSON"];
-
   return (
     <div className={`bg-dark ${styles.Container}`}>
       <h1 className={styles.heading}>Reports Generations</h1>
       <form className={styles.form} onSubmit={SubmitHandler}>
-
         {/* REPORT TYPE */}
         <div className={styles.InpCon}>
           <label className={styles.Label}>Report Type</label>
           <br />
           {/* Note: If you want to force selection, you can add a default option with value="" and use the 'required' attribute */}
-          <select name="Report Type" className={styles.Input} required> 
-            <option value="" disabled>Select a Report Type</option>
+          <select name="Report Type" className={styles.Input} required>
+            <option value="" disabled>
+              Select a Report Type
+            </option>
             {Report.map((report, index) => (
               <option key={index} value={report}>
                 {report}
@@ -79,7 +72,9 @@ const Reports = () => {
           <label className={styles.Label}>Species</label>
           <br />
           <select name="Species" className={styles.Input} required>
-            <option value="" disabled>Select a Species</option>
+            <option value="" disabled>
+              Select a Species
+            </option>
             {Species.map((specie, index) => (
               <option key={index} value={specie}>
                 {specie}
@@ -93,7 +88,9 @@ const Reports = () => {
           <label className={styles.Label}>Conservational Status</label>
           <br />
           <select name="Status" className={styles.Input} required>
-            <option value="" disabled>Select Status</option>
+            <option value="" disabled>
+              Select Status
+            </option>
             {Conservational_Status.map((status, index) => (
               <option key={index} value={status}>
                 {status}
@@ -141,7 +138,9 @@ const Reports = () => {
           <label className={styles.Label}>Export Format</label>
           <br />
           <select name="Export Format" className={styles.Input} required>
-             <option value="" disabled>Select Format</option>
+            <option value="" disabled>
+              Select Format
+            </option>
             {Format.map((format, index) => (
               <option key={index} value={format}>
                 {format}

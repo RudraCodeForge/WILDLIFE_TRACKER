@@ -1,6 +1,11 @@
 import styles from "../styles/Login.module.css";
-import { Link } from "react-router-dom";
+import { Link , Navigate} from "react-router-dom";
+import {useSelector} from "react-redux";
 const Login = () => {
+  const {isLoggedIn} = useSelector((store)=>store.SignUp);
+  if(isLoggedIn){
+    return <Navigate to="/" replace />;
+  }
   return (
     <div className={`${styles.wrapper} d-flex align-items-center justify-content-center`}>
       <div className={`${styles.card} p-4 p-sm-5 shadow-lg`}>

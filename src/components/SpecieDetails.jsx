@@ -3,8 +3,13 @@ import ImageSlider from "./ImageSlider";
 import RecentActivity from "./ActivityTrend";
 import BDetails from "./BDetails";
 import SData from "./SData";
-import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Link, Navigate } from "react-router-dom";
 const SpecieDetails = () => {
+  const {Role,isLoggedIn} = useSelector((store)=>store.SignUp);
+  if(!isLoggedIn){
+    return <Navigate to="/login" replace />;
+  }
   const activityData = [
     { day: "Jan", value: 398000 },
     { day: "Feb", value: 120000 },
@@ -13,7 +18,6 @@ const SpecieDetails = () => {
     { day: "May", value: 412000 },
     { day: "Jun", value: 465000 },
   ];
-  const Role = "admin";
   const totalMax = 465000;
   const firstValue = activityData[0].value;
   const lastValue = activityData[activityData.length - 1].value;

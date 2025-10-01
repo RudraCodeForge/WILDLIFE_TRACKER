@@ -3,11 +3,13 @@ import KeyPoints from "./KeyPoints";
 import { SiReactivex } from "react-icons/si";
 import { FaUsers } from "react-icons/fa";
 import Activities from "./Activities";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, Navigate } from "react-router-dom";
 import { BsClipboard2DataFill } from "react-icons/bs";
+import { useSelector } from "react-redux";
 const AdminDashboard = () => {
+  const { isLoggedIn, Role } = useSelector((store) => store.SignUp);
   const Activity = useLoaderData();
-  
+
   const Points = [
     {
       id: 1,
@@ -28,6 +30,11 @@ const AdminDashboard = () => {
       Logo: <BsClipboard2DataFill size={30} color="lime" />,
     },
   ];
+  if (!isLoggedIn) {
+    return <Navigate to="/login" replace />;
+  }else if(Role !== "admin"){
+    return <Navigate to="/dashboard" replace />;
+  }
   return (
     <div className={`bg-dark ${styles.container}`}>
       <h1 className={styles.heading}>Admin Dashboard</h1>
