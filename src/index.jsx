@@ -4,6 +4,7 @@ import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import Home from "./components/Home";
+import {FirstApi} from "./components/Home";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import NotFound from "./components/NotFound";
@@ -38,6 +39,7 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+        loader: FirstApi,
       },
       {
         path: "/login",

@@ -1,41 +1,49 @@
-
 import styles from "../styles/SignUp.module.css";
-import { Link, Navigate} from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useState } from "react";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
+import { SignupUser } from "../apis/SignupApi";
 
 const SignUp = () => {
-  const {isLoggedIn} = useSelector((store)=>store.SignUp);
-  if(isLoggedIn){
+  const { isLoggedIn } = useSelector((store) => store.SignUp);
+  if (isLoggedIn) {
     return <Navigate to="/" replace />;
   }
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    dateOfBirth: '',
-    password: '',
-    confirmPassword: '',
-    agreeToTerms: false
+    firstName: "",
+    lastName: "",
+    username: "",
+    email: "",
+    phone: "",
+    dateOfBirth: "",
+    password: "",
+    confirmPassword: "",
+    agreeToTerms: false,
   });
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: type === "checkbox" ? checked : value,
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add form validation and submission logic here
-    console.log('Form submitted:', formData);
+    try{
+    const res = await SignupUser(formData);
+      console.log(JSON.stringify(res))
+    }catch(error){
+      console.error("ERROR SIGNING UP:",error)
+    }
+    
   };
 
   return (
-    <div className={`${styles.wrapper} d-flex align-items-center justify-content-center`}>
+    <div
+      className={`${styles.wrapper} d-flex align-items-center justify-content-center`}
+    >
       <div className={`${styles.card} p-4 p-sm-5 shadow-lg`}>
         <div className={styles.header}>
           <h2 className="text-center text-light mb-2 h3 h-sm-2">
@@ -80,6 +88,22 @@ const SignUp = () => {
                   autoComplete="family-name"
                 />
               </div>
+            </div>
+
+            <div className="col-md-6 mb-3">
+              <label htmlFor="username" className="visually-hidden">
+                username
+              </label>
+              <input
+                id="username"
+                name="username"
+                type="text"
+                className={`form-control ${styles.input}`}
+                placeholder="@username"
+                value={formData.username}
+                onChange={handleInputChange}
+                autoComplete="family-name"
+              />
             </div>
 
             <div className="mb-3">
@@ -182,21 +206,30 @@ const SignUp = () => {
                 onChange={handleInputChange}
                 required
               />
-              <label className={`form-check-label ${styles.checkboxLabel}`} htmlFor="agreeToTerms">
+              <label
+                className={`form-check-label ${styles.checkboxLabel}`}
+                htmlFor="agreeToTerms"
+              >
                 I agree to the{" "}
-                <Link to="/termsandcondition" className="text-success text-decoration-none">
+                <Link
+                  to="/termsandcondition"
+                  className="text-success text-decoration-none"
+                >
                   Terms of Service
                 </Link>{" "}
                 and{" "}
-                <Link to="/privacypolicy" className="text-success text-decoration-none">
+                <Link
+                  to="/privacypolicy"
+                  className="text-success text-decoration-none"
+                >
                   Privacy Policy
                 </Link>
               </label>
             </div>
           </div>
 
-          <button 
-            type="submit" 
+          <button
+            type="submit"
             className={`btn ${styles.signupBtn} w-100`}
             disabled={!formData.agreeToTerms}
           >
@@ -207,7 +240,10 @@ const SignUp = () => {
         <div className={styles.footer}>
           <p className="text-center text-secondary mt-4 mb-0 small">
             Already have an account?{" "}
-            <Link to="/login" className="text-success text-decoration-none fw-semibold">
+            <Link
+              to="/login"
+              className="text-success text-decoration-none fw-semibold"
+            >
               Sign in here
             </Link>
           </p>

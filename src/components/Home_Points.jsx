@@ -1,16 +1,29 @@
-
-import styles from "../styles/Home_Points.module.css"
+import styles from "../styles/Home_Points.module.css";
 import Points from "./Points";
-import { useSelector } from "react-redux";
-const Home_Points = () => {
-  const {pointsData} = useSelector((store)=>store.Home)
+import { AiOutlineEnvironment, AiOutlineSafety } from "react-icons/ai";
+import { BiBarChartSquare } from "react-icons/bi";
+
+const iconMap = {
+  AiOutlineEnvironment: AiOutlineEnvironment,
+  BiBarChartSquare: BiBarChartSquare,
+  AiOutlineSafety: AiOutlineSafety,
+};
+
+const Home_Points = ({ PointsData }) => {
   return (
     <div className={styles.PointsCon}>
-      {pointsData.map((point, index) => (
-        <li key={index}>
-          <Points ICON={point.ICON} TITLE={point.TITLE} DESC={point.DESC} />
-        </li>
-      ))}
+      {PointsData.map((point, index) => {
+        const IconComponent = iconMap[point.ICON]; // string -> actual component
+        return (
+          <li key={index}>
+            <Points
+              ICON={IconComponent}  // pass the actual component
+              TITLE={point.TITLE}
+              DESC={point.DESC}
+            />
+          </li>
+        );
+      })}
     </div>
   );
 };

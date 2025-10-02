@@ -1,5 +1,4 @@
 import styles from "../styles/Points.module.css";
-
 const Points = ({ICON,TITLE,DESC}) => {
   return (
     <div className={styles.PointsCon}>

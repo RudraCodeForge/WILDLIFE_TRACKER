@@ -1,6 +1,4 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
-import { AiOutlineEnvironment, AiOutlineSafety } from "react-icons/ai";
-import { BiBarChartSquare } from "react-icons/bi";
 
 // SignUp slice
 const SignUpSlice = createSlice({
@@ -19,31 +17,6 @@ const SignUpSlice = createSlice({
       state.Role = "user";
     },
   },
-});
-
-// Home slice
-const Home = createSlice({
-  name: "Home",
-  initialState: {
-    pointsData: [
-      {
-        ICON: AiOutlineEnvironment,
-        TITLE: "Live Tracking",
-        DESC: "Real time location tracking of endangered animals.",
-      },
-      {
-        ICON: BiBarChartSquare,
-        TITLE: "Data & Insights",
-        DESC: "Comprehensive data analysis for informed conservation efforts.",
-      },
-      {
-        ICON: AiOutlineSafety,
-        TITLE: "Secure Monitoring",
-        DESC: "Advanced security measures to protect animal data and locations.",
-      },
-    ],
-  },
-  reducers: {},
 });
 
 // Reports Slice
@@ -123,7 +96,6 @@ const Login = createSlice({
 const WildLifeStore = configureStore({
   reducer: {
     SignUp: SignUpSlice.reducer,
-    Home: Home.reducer,
     Reports: Reports.reducer,
     Login: Login.reducer
   },
