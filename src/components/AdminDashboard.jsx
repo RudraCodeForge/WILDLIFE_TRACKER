@@ -7,7 +7,7 @@ import { useLoaderData, Navigate } from "react-router-dom";
 import { BsClipboard2DataFill } from "react-icons/bs";
 import { useSelector } from "react-redux";
 const AdminDashboard = () => {
-  const { isLoggedIn, Role } = useSelector((store) => store.SignUp);
+  const { isLoggedIn, Role } = useSelector((store) => store.Login);
   const Activity = useLoaderData();
 
   const Points = [

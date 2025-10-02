@@ -7,8 +7,7 @@ const Navbar1 = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  const {isLoggedIn , Role,userLinks, adminLinks } = useSelector((store)=>store.SignUp)
-  
+  const {Role,userLinks, adminLinks,isLoggedIn } = useSelector((store)=>store.Login)
   const Location = useLocation().pathname;
 
   const linksToRender = Role === "user" ? userLinks : Role === "admin" ? adminLinks : [];

@@ -5,7 +5,7 @@ import {useSelector} from "react-redux";
 import { Link, Navigate } from "react-router-dom";
 
 const SpeciesList = () => {
-  const {Role,isLoggedIn} = useSelector((store)=>store.SignUp);
+  const {Role,isLoggedIn} = useSelector((store)=>store.Login);
   if(!isLoggedIn){
     return <Navigate to="/login" replace />;
   }

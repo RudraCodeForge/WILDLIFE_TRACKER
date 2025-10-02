@@ -5,7 +5,7 @@ import Spinner from "./Spinner";
 import { useSelector } from "react-redux";
 const UserList = () => {
   const users = useLoaderData();
-  const { isLoggedIn, Role } = useSelector((store) => store.SignUp);
+  const { isLoggedIn, Role } = useSelector((store) => store.Login);
   if (!isLoggedIn) {
     return <Navigate to="/login" replace />;
   } else if (Role !== "admin") {

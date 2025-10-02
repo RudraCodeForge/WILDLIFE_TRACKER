@@ -7,7 +7,15 @@ import { FaPhoneAlt } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 const ProfileCard = (props) => {
-  const { Role } = useSelector((store) => store.SignUp);
+  const { Role } = useSelector((store) => store.Login);
+
+  const Logout = (e) => {
+    e.preventDefault();
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("User");
+    window.location.href = "/login"
+  }
+  
   return (
     <div className={`text-white pb-2 ${styles.ProfileCon}`}>
       <div className={styles.BgImg}>
@@ -61,6 +69,9 @@ const ProfileCard = (props) => {
           <Link to="/profile/edit-profile" className="m-2 btn btn-primary">
             Edit Profile
           </Link>
+          <button onClick={Logout} className="m-2 btn btn-primary">
+            Logout
+          </button>
         </div>
       </div>
     </div>

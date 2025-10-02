@@ -6,32 +6,8 @@ import { BiBarChartSquare } from "react-icons/bi";
 const SignUpSlice = createSlice({
   name: "SignUp",
   initialState: {
-    isLoggedIn: true,
-    Role: "admin",
-    adminLinks: [
-      { to: "/admin/dashboard", label: "Admin Dashboard" },
-      { to: "/admin/manage-users", label: "Manage Users" },
-      { to: "/admin/reports", label: "Reports" },
-      { to: "/admin/profile", label: "Profile" },
-      { to: "/admin/species", label: "Species" },
-    ],
-    userLinks: [
-      { to: "/", label: "Home" },
-      { to: "/dashboard", label: "Dashboard" },
-      { to: "/species", label: "Species" },
-      { to: "/aboutus", label: "About Us" },
-      { to: "/contactus", label: "Contact Us" },
-      {
-        to: "/profile",
-        label: "Profile",
-        paths: [
-          "/profile",
-          "/profile/tracked-animals",
-          "/profile/missions",
-          "/profile/overview",
-        ],
-      },
-    ],
+    isLoggedIn: false,
+    Role: "user",
   },
   reducers: {
     SignUp: (state, action) => {
@@ -96,14 +72,63 @@ const Reports = createSlice({
   reducers: {},
 });
 
+//Login Slice 
+const Login = createSlice({
+  name: "Login",
+  initialState: {
+    isLoggedIn: localStorage.getItem("isLoggedIn") === "true" || false,
+    Role: "admin",
+    User: JSON.parse(localStorage.getItem("User")) || {},
+    adminLinks: [
+      { to: "/admin/dashboard", label: "Admin Dashboard" },
+      { to: "/admin/manage-users", label: "Manage Users" },
+      { to: "/admin/reports", label: "Reports" },
+      { to: "/admin/profile", label: "Profile" },
+      { to: "/admin/species", label: "Species" },
+    ],
+    userLinks: [
+      { to: "/", label: "Home" },
+      { to: "/dashboard", label: "Dashboard" },
+      { to: "/species", label: "Species" },
+      { to: "/aboutus", label: "About Us" },
+      { to: "/contactus", label: "Contact Us" },
+      {
+        to: "/profile",
+        label: "Profile",
+        paths: [
+          "/profile",
+          "/profile/tracked-animals",
+          "/profile/missions",
+          "/profile/overview",
+        ],
+      },
+    ],
+  },
+  reducers: {
+    login: (state, action) => {
+      state.isLoggedIn = true;
+      state.User = action.payload;
+      localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("User", JSON.stringify(action.payload));
+    },
+    logout: (state) => {
+      state.isLoggedIn = false;
+      state.User = {};
+      localStorage.removeItem("isLoggedIn");
+      localStorage.removeItem("User");
+    }
+  }
+});
 // Configure store
 const WildLifeStore = configureStore({
   reducer: {
     SignUp: SignUpSlice.reducer,
     Home: Home.reducer,
     Reports: Reports.reducer,
+    Login: Login.reducer
   },
 });
 
+export const { login } = Login.actions;
 export const { SignUp, Logout } = SignUpSlice.actions;
 export default WildLifeStore;

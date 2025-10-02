@@ -3,7 +3,7 @@ import styles from "../styles/Reports.module.css"; // Assuming your original imp
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 const Reports = () => {
-  const { isLoggedIn, Role } = useSelector((store) => store.SignUp);
+  const { isLoggedIn, Role } = useSelector((store) => store.Login);
   if (!isLoggedIn) {
     return <Navigate to="/login" replace />;
   } else if (Role !== "admin") {

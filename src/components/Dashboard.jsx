@@ -1,8 +1,14 @@
 import styles from "../styles/Dashboard.module.css";
 import MyMap from "./Map";
+import {Navigate} from "react-router-dom";
+import {useSelector} from "react-redux";
 import KeyPoints from "./KeyPoints";
 import RecentActivity from "./ActivityTrend";
 const Dashboard = () => {
+  const {isLoggedIn} = useSelector((store)=>store.Login);
+  if(!isLoggedIn){
+    return <Navigate to="/login" replace />
+  }
   const activityData = [
     { day: "Mon", value: 100 },
     { day: "Tue", value: 45 },

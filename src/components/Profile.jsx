@@ -3,12 +3,10 @@ import styles from "../styles/Profile.module.css";
 import ProfileLinks from "./ProfileLinks";
 import KeyPoints from "./KeyPoints";
 import { useSelector } from "react-redux";
-import { Navigate, Outlet, useLoaderData } from "react-router-dom";
+import { Navigate, Outlet} from "react-router-dom";
 
 const Profile = () => {
-  const { Role, isLoggedIn } = useSelector((store) => store.SignUp);
-  const User = useLoaderData();
-
+  const { Role, isLoggedIn,User} = useSelector((store) => store.Login);
   const user = {
     Exprience: "4+ years of experience",
     Followers: "2.5M",
@@ -31,7 +29,7 @@ const Profile = () => {
       <ProfileCard
         Name={User.firstName}
         Username={User.username}
-        Badge={User.company.title}
+        Badge={Role}
         Email={User.email}
         Phone={User.phone}
         Experience={user.Exprience}
@@ -55,12 +53,6 @@ const Profile = () => {
       <Outlet />
     </div>
   );
-};
-
-export const FetchProfile = () => {
-  return fetch("https://dummyjson.com/users/2")
-    .then((res) => res.json())
-    .catch((err) => console.error("Error fetching profile:", err));
 };
 
 export default Profile;

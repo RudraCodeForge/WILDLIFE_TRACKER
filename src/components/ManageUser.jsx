@@ -3,7 +3,7 @@ import ProfileCard from "./ProfileCard";
 import { useLoaderData , Navigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 const ManageUser = () => {
-  const {Role, isLoggedIn} = useSelector((state) => state.SignUp);
+  const {Role, isLoggedIn} = useSelector((state) => state.Login);
   if(!isLoggedIn){
     return <Navigate to="/login" replace />
   }

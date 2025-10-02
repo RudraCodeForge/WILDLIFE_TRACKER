@@ -14,7 +14,7 @@ import ContactUs from "./components/ContactUs";
 import SpeciesList from "./components/SpeciesList";
 import SpecieDetails from "./components/SpecieDetails";
 import Profile from "./components/Profile";
-import { FetchProfile } from "./components/Profile";
+//import { FetchProfile } from "./components/Profile";
 import TrackedAnimals from "./components/TrackedAnimals";
 import Overview from "./components/Overview";
 import Dashboard from "./components/Dashboard";
@@ -70,7 +70,7 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: <Profile />,
-        loader: FetchProfile,
+        //loader: FetchProfile,
         children: [
           {
             path: "/profile",
@@ -105,7 +105,7 @@ const router = createBrowserRouter([
       {
         path: "/admin/profile",
         element: <Profile />,
-        loader: FetchProfile,
+        //loader: FetchProfile,
       },
       {
         path: "/admin/species",

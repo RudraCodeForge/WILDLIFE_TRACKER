@@ -1,10 +1,29 @@
 import styles from "../styles/Login.module.css";
 import { Link , Navigate} from "react-router-dom";
+import { loginUser } from "../apis/authApi";
 import {useSelector} from "react-redux";
+import { useDispatch } from "react-redux";
+import {login} from "../store/index";
 const Login = () => {
-  const {isLoggedIn} = useSelector((store)=>store.SignUp);
+  const {isLoggedIn} = useSelector((store)=>store.Login);
   if(isLoggedIn){
     return <Navigate to="/" replace />;
+  }
+  const dispatch = useDispatch()
+  const HandleSubmit = async (e) =>{
+    e.preventDefault();
+    const Username = e.target.username.value;
+    const password = e.target.password.value;
+    try{
+    const res = await loginUser(Username, password);
+      const {id , username, email, firstName , lastName, gender, image} = res;
+      const User = {id,username,email,firstName,lastName,gender,image};
+      dispatch(login(User));
+      localStorage.setItem("User", JSON.stringify(User))
+      localStorage.setItem("isLoggedIn", "true")
+    } catch(error){
+      console.error("Error logging in:", error);
+    }
   }
   return (
     <div className={`${styles.wrapper} d-flex align-items-center justify-content-center`}>
@@ -14,7 +33,7 @@ const Login = () => {
           Login to continue your journey.
         </p>
 
-        <form>
+        <form onSubmit={HandleSubmit}>
           <div className="mb-3">
             <label htmlFor="username" className="visually-hidden">
               Username or Email

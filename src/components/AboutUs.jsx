@@ -5,7 +5,7 @@ import {useSelector} from "react-redux";
 import {Navigate} from "react-router-dom";
 import { GiEarthAfricaEurope } from "react-icons/gi";
 const AboutUs = () => {
-  const {isLoggedIn} = useSelector((store)=>store.SignUp);
+  const {isLoggedIn} = useSelector((store)=>store.Login);
   if(!isLoggedIn){
     return <Navigate to="/login" replace />;
   }
