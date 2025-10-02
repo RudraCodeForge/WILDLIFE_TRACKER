@@ -1,0 +1,74 @@
+.Container{
+  padding:10px;
+}
+.BtnCon{
+  text-align:center;
+  padding:10px;
+  border-radius:10px;
+  margin-top:10px;
+  box-shadow:0 0 10px rgba(0,0,0,0.5);
+}
+/*.Delete,
+.Update,
+.Block{
+  padding:10px;
+  margin:5px;
+  border-radius:10px;
+  border:none;
+  color:white;
+}
+.Delete{
+  background-color:red;
+}
+.Block{
+  background-color:orange;
+}
+.Update{
+  background-color:#2f39f7;
+}*/
+.action-buttons {
+  display: flex;
+  justify-content: center; 
+  gap: 15px;
+  padding: 20px 0;
+}
+
+.btn {
+  padding: 5px 10px;
+  margin: 5px;
+  border-radius: 8px; 
+  border: none;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease; 
+  flex-grow: 1; 
+  max-width: 150px;
+}
+
+.Update {
+  background-color: #3b82f6;
+}
+.Update:hover {
+  background-color: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+}
+
+.Block {
+  background-color: #f97316;
+}
+.Block:hover {
+  background-color: #ea580c; 
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(249, 115, 22, 0.4);
+}
+.Delete {
+  background-color: #ef4444;
+}
+.Delete:hover {
+  background-color: #dc2626;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+}

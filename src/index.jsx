@@ -23,6 +23,8 @@ import { ActivityData } from "./components/AdminDashboard";
 import "bootstrap/dist/css/bootstrap.min.css";
 import AboutUs from "./components/AboutUs";
 import UserList from "./components/UserList";
+import ManageUser from "./components/ManageUser";
+import {SpecificProfile} from "./components/ManageUser";
 import Reports from "./components/Reports";
 import AddSpeciesForm from "./components/AddSpecies";
 import { Users } from "./components/UserList";
@@ -130,7 +132,13 @@ const router = createBrowserRouter([
       {
         path: "/admin/add-species",
         element: <AddSpeciesForm />
-      }
+      },
+      {
+        path: "manage-user/:id",
+        element: <ManageUser/>,
+        loader: SpecificProfile
+      },
+      
     ],
   },
   {
