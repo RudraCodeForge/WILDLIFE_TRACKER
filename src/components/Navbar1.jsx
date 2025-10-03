@@ -1,17 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaRegBell } from "react-icons/fa";
+import {login} from "../store/index";
 import styles from "../styles/Navbar1.module.css";
 import { Link, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 
 const Navbar1 = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
+  const dispatch = useDispatch()
 
   const { Role, userLinks, adminLinks, isLoggedIn } = useSelector(
     (store) => store.Login,
   );
   const location = useLocation().pathname;
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem("User"));
+    const storedRole = localStorage.getItem("Role");
+    if (storedUser && storedRole) {
+      dispatch(login({ User: storedUser, Role: storedRole }));
+    }
+  }, [dispatch,isLoggedIn]);
 
   // Links decide karo Redux state ke hisaab se
   const linksToRender = isLoggedIn

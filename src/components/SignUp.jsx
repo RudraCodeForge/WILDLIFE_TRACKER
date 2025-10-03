@@ -6,9 +6,11 @@ import { SignupUser } from "../apis/authApi";
 
 const SignUp = () => {
   const { isLoggedIn } = useSelector((store) => store.SignUp);
+
   if (isLoggedIn) {
     return <Navigate to="/" replace />;
   }
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -19,7 +21,12 @@ const SignUp = () => {
     password: "",
     confirmPassword: "",
     Terms: false,
+    profileImage: "", // Cloudinary image URL
   });
+
+  const [uploading, setUploading] = useState(false);
+
+  const [error, setError] = useState([]);
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -29,15 +36,47 @@ const SignUp = () => {
     }));
   };
 
+  // Image upload handler
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    setUploading(true);
+    const data = new FormData();
+    data.append("file", file);
+    data.append("upload_preset", "unsigned_upload"); // apna preset
+    data.append("context", ""); // remove metadata/context
+    data.append("metadata", ""); // remove metadata
+
+    try {
+      const res = await fetch(
+        `https://api.cloudinary.com/v1_1/db4dzwpfm/image/upload`,
+        {
+          method: "POST",
+          body: data,
+        }
+      );
+      const result = await res.json();
+      setFormData((prev) => ({
+        ...prev,
+        profileImage: result.secure_url, // Cloudinary URL
+      }));
+    } catch (err) {
+      console.error("Image upload error:", err);
+    } finally {
+      setUploading(false);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try{
-    const res = await SignupUser(formData);
-      console.log(JSON.stringify(res))
-    }catch(error){
-      console.error("ERROR SIGNING UP:",error)
+    try {
+      const res = await SignupUser(formData);
+      setError(res.errorMessages);
+      console.log("Signup response:", res);
+    } catch (error) {
+      console.error("ERROR SIGNING UP:", error);
     }
-    
   };
 
   return (
@@ -52,9 +91,27 @@ const SignUp = () => {
           <p className="text-center text-secondary mb-4 small">
             Start your conservation journey today
           </p>
+          <div className="ErrorMessageCon">
+          </div>
         </div>
 
         <form onSubmit={handleSubmit}>
+          {/* Image upload */}
+          <div className="mb-3">
+            <label htmlFor="profileImage" className="visually-hidden">
+              Profile Image
+            </label>
+            <input
+              id="profileImage"
+              name="profileImage"
+              type="file"
+              accept="image/*"
+              className={`form-control ${styles.input}`}
+              onChange={handleImageUpload}
+            />
+            {uploading && <p className="small text-info mt-1">Uploading image...</p>}
+          </div>
+
           <div className={styles.formSection}>
             <div className="row">
               <div className="col-md-6 mb-3">
@@ -92,7 +149,7 @@ const SignUp = () => {
 
             <div className="col-md-6 mb-3">
               <label htmlFor="username" className="visually-hidden">
-                username
+                Username
               </label>
               <input
                 id="username"
@@ -102,7 +159,7 @@ const SignUp = () => {
                 placeholder="@username"
                 value={formData.username}
                 onChange={handleInputChange}
-                autoComplete="family-name"
+                autoComplete="off"
               />
             </div>
 
@@ -231,9 +288,9 @@ const SignUp = () => {
           <button
             type="submit"
             className={`btn ${styles.signupBtn} w-100`}
-            disabled={!formData.Terms}
+            disabled={!formData.Terms || uploading}
           >
-            CREATE ACCOUNT
+            {uploading ? "Uploading..." : "CREATE ACCOUNT"}
           </button>
         </form>
 

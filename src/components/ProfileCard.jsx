@@ -27,7 +27,7 @@ const ProfileCard = (props) => {
         <div className={`d-flex ${styles.DataCon}`}>
           <div className="m-2">
             <img
-              src={props.ProfileImg}
+              src={props.profileImage}
               alt="profile"
               className={styles.ProfileImg}
             />

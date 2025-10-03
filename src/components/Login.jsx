@@ -28,8 +28,9 @@ const Login = () => {
     }
 
     // Correct destructuring
-    const { _id, username, email, firstName, lastName, phone, gender, image } = res.User;
-    const User = { id: _id, username, email, firstName, lastName, phone, gender, image };
+    console.log("User Data:", res.User);
+    const { _id, profileImage,username, email, firstName, lastName, phone, gender, image } = res.User;
+    const User = { id: _id,profileImage, username, email, firstName, lastName, phone, gender, image };
 
     // Save to redux
     dispatch(login(User));
