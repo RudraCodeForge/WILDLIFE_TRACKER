@@ -3,17 +3,29 @@ import { FaRegBell } from "react-icons/fa";
 import styles from "../styles/Navbar1.module.css";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
+
 const Navbar1 = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  const {Role,userLinks, adminLinks,isLoggedIn } = useSelector((store)=>store.Login)
-  const Location = useLocation().pathname;
+  const { Role, userLinks, adminLinks, isLoggedIn } = useSelector(
+    (store) => store.Login,
+  );
+  const location = useLocation().pathname;
 
-  const linksToRender = Role === "user" ? userLinks : Role === "admin" ? adminLinks : [];
+  // Links decide karo Redux state ke hisaab se
+  const linksToRender = isLoggedIn
+    ? Role === "user"
+      ? userLinks
+      : Role === "admin"
+        ? adminLinks
+        : []
+    : [];
 
   return (
-    <div className={`bg-dark ${styles.Navbar1} ${isOpen ? styles.expanded : ""}`}>
+    <div
+      className={`bg-dark ${styles.Navbar1} ${isOpen ? styles.expanded : ""}`}
+    >
       <div className={styles.NavbarTop}>
         {/* Logo Left */}
         <div className={styles.LogoCon}>
@@ -25,18 +37,18 @@ const Navbar1 = () => {
         {isLoggedIn ? (
           <>
             <div className={styles.LaptopLinks}>
-              {linksToRender.map(link => (
+              {linksToRender.map((link) => (
                 <Link
                   key={link.to}
                   to={link.to}
                   className={`${styles.LLink} ${
                     link.paths
-                      ? link.paths.includes(Location)
+                      ? link.paths.includes(location)
                         ? styles.LActive
                         : ""
-                      : Location === link.to
-                      ? styles.LActive
-                      : ""
+                      : location === link.to
+                        ? styles.LActive
+                        : ""
                   }`}
                 >
                   {link.label}
@@ -86,18 +98,18 @@ const Navbar1 = () => {
       {isOpen && (
         <div className={styles.LinksCon}>
           {isLoggedIn ? (
-            linksToRender.map(link => (
+            linksToRender.map((link) => (
               <Link
                 key={link.to}
                 to={link.to}
                 className={`${styles.Link} ${
                   link.paths
-                    ? link.paths.includes(Location)
+                    ? link.paths.includes(location)
                       ? styles.Active
                       : ""
-                    : Location === link.to
-                    ? styles.Active
-                    : ""
+                    : location === link.to
+                      ? styles.Active
+                      : ""
                 }`}
               >
                 {link.label}
@@ -107,13 +119,13 @@ const Navbar1 = () => {
             <>
               <Link
                 to="/login"
-                className={`${styles.Link} ${Location === "/login" ? styles.Active : ""}`}
+                className={`${styles.Link} ${location === "/login" ? styles.Active : ""}`}
               >
                 Login
               </Link>
               <Link
                 to="/signup"
-                className={`${styles.Link} ${Location === "/signup" ? styles.Active : ""}`}
+                className={`${styles.Link} ${location === "/signup" ? styles.Active : ""}`}
               >
                 Signup
               </Link>

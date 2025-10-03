@@ -2,7 +2,7 @@ import styles from "../styles/SignUp.module.css";
 import { Link, Navigate } from "react-router-dom";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { SignupUser } from "../apis/SignupApi";
+import { SignupUser } from "../apis/authApi";
 
 const SignUp = () => {
   const { isLoggedIn } = useSelector((store) => store.SignUp);
@@ -15,10 +15,10 @@ const SignUp = () => {
     username: "",
     email: "",
     phone: "",
-    dateOfBirth: "",
+    DateOfBirth: "",
     password: "",
     confirmPassword: "",
-    agreeToTerms: false,
+    Terms: false,
   });
 
   const handleInputChange = (e) => {
@@ -140,15 +140,15 @@ const SignUp = () => {
             </div>
 
             <div className="mb-3">
-              <label htmlFor="dateOfBirth" className={styles.label}>
+              <label htmlFor="DateOfBirth" className={styles.label}>
                 Date of Birth
               </label>
               <input
-                id="dateOfBirth"
-                name="dateOfBirth"
+                id="DateOfBirth"
+                name="DateOfBirth"
                 type="date"
                 className={`form-control ${styles.input} ${styles.dateInput}`}
-                value={formData.dateOfBirth}
+                value={formData.DateOfBirth}
                 onChange={handleInputChange}
                 autoComplete="bday"
               />
@@ -200,15 +200,15 @@ const SignUp = () => {
               <input
                 className={`form-check-input ${styles.checkbox}`}
                 type="checkbox"
-                id="agreeToTerms"
-                name="agreeToTerms"
-                checked={formData.agreeToTerms}
+                id="Terms"
+                name="Terms"
+                checked={formData.Terms}
                 onChange={handleInputChange}
                 required
               />
               <label
                 className={`form-check-label ${styles.checkboxLabel}`}
-                htmlFor="agreeToTerms"
+                htmlFor="Terms"
               >
                 I agree to the{" "}
                 <Link
@@ -231,7 +231,7 @@ const SignUp = () => {
           <button
             type="submit"
             className={`btn ${styles.signupBtn} w-100`}
-            disabled={!formData.agreeToTerms}
+            disabled={!formData.Terms}
           >
             CREATE ACCOUNT
           </button>

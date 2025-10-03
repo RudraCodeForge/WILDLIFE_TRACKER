@@ -1,30 +1,48 @@
 import styles from "../styles/Login.module.css";
 import { Link , Navigate} from "react-router-dom";
+import { useState} from "react";
 import { loginUser } from "../apis/authApi";
 import {useSelector} from "react-redux";
 import { useDispatch } from "react-redux";
 import {login} from "../store/index";
 const Login = () => {
+  const [message,setmessage]=useState("");
   const {isLoggedIn} = useSelector((store)=>store.Login);
   if(isLoggedIn){
     return <Navigate to="/" replace />;
   }
   const dispatch = useDispatch()
-  const HandleSubmit = async (e) =>{
-    e.preventDefault();
-    const Username = e.target.username.value;
-    const password = e.target.password.value;
-    try{
+  const HandleSubmit = async (e) => {
+  e.preventDefault();
+  const Username = e.target.username.value;
+  const password = e.target.password.value;
+
+  try {
     const res = await loginUser(Username, password);
-      const {id , username, email, firstName , lastName, gender, image} = res;
-      const User = {id,username,email,firstName,lastName,gender,image};
-      dispatch(login(User));
-      localStorage.setItem("User", JSON.stringify(User))
-      localStorage.setItem("isLoggedIn", "true")
-    } catch(error){
-      console.error("Error logging in:", error);
+    console.log("Full Response:", res);
+    console.log("User Data:", res.User);
+
+    if (!res.isLoggedIn) {
+      setmessage(res.message);
+      return;
     }
+
+    // Correct destructuring
+    const { _id, username, email, firstName, lastName, phone, gender, image } = res.User;
+    const User = { id: _id, username, email, firstName, lastName, phone, gender, image };
+
+    // Save to redux
+    dispatch(login(User));
+
+    // Save to localStorage
+    localStorage.setItem("User", JSON.stringify(User));
+    localStorage.setItem("Role", res.Role);
+    localStorage.setItem("isLoggedIn", JSON.stringify(res.isLoggedIn));
+
+  } catch (error) {
+    console.error("Error logging in:", error);
   }
+};
   return (
     <div className={`${styles.wrapper} d-flex align-items-center justify-content-center`}>
       <div className={`${styles.card} p-4 p-sm-5 shadow-lg`}>
@@ -60,7 +78,7 @@ const Login = () => {
               autoComplete="current-password"
             />
           </div>
-
+          <span className="Error">{message}</span>
           <div className="mb-3 text-start">
             <Link to="/forget_password" className="text-secondary small text-decoration-none">
               Forgot your password?

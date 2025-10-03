@@ -49,8 +49,8 @@ const Reports = createSlice({
 const Login = createSlice({
   name: "Login",
   initialState: {
-    isLoggedIn: localStorage.getItem("isLoggedIn") === "true" || false,
-    Role: "admin",
+    isLoggedIn: JSON.parse(localStorage.getItem("isLoggedIn")) || false,
+    Role: localStorage.getItem("Role") || null,
     User: JSON.parse(localStorage.getItem("User")) || {},
     adminLinks: [
       { to: "/admin/dashboard", label: "Admin Dashboard" },
@@ -80,17 +80,21 @@ const Login = createSlice({
   reducers: {
     login: (state, action) => {
       state.isLoggedIn = true;
-      state.User = action.payload;
-      localStorage.setItem("isLoggedIn", "true");
-      localStorage.setItem("User", JSON.stringify(action.payload));
+      state.User = action.payload.User;
+      state.Role = action.payload.Role;
+      localStorage.setItem("User", JSON.stringify(action.payload.User));
+      localStorage.setItem("Role", action.payload.Role);
+      localStorage.setItem("isLoggedIn", JSON.stringify(true));
     },
     logout: (state) => {
       state.isLoggedIn = false;
       state.User = {};
+      state.Role = null;
       localStorage.removeItem("isLoggedIn");
       localStorage.removeItem("User");
-    }
-  }
+      localStorage.removeItem("Role");
+    },
+  },
 });
 // Configure store
 const WildLifeStore = configureStore({
