@@ -1,40 +1,53 @@
 import { useState, useEffect } from "react";
+import {jwtDecode} from "jwt-decode";
 import { FaRegBell } from "react-icons/fa";
-import {login} from "../store/index";
+import { login } from "../store/index";
 import styles from "../styles/Navbar1.module.css";
 import { Link, useLocation } from "react-router-dom";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 const Navbar1 = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const toggleMenu = () => setIsOpen(!isOpen);
-  const dispatch = useDispatch()
-
-  const { Role, userLinks, adminLinks, isLoggedIn } = useSelector(
-    (store) => store.Login,
+  const { Token, Role, userLinks, adminLinks } = useSelector(
+    (store) => store.Login
   );
+  const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch();
   const location = useLocation().pathname;
-  useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem("User"));
-    const storedRole = localStorage.getItem("Role");
-    if (storedUser && storedRole) {
-      dispatch(login({ User: storedUser, Role: storedRole }));
-    }
-  }, [dispatch,isLoggedIn]);
 
-  // Links decide karo Redux state ke hisaab se
-  const linksToRender = isLoggedIn
-    ? Role === "user"
+  const toggleMenu = () => setIsOpen(!isOpen);
+
+  // Sync Redux state with localStorage on mount
+  useEffect(() => {
+    const storedToken = localStorage.getItem("Token");
+    const storedRole = localStorage.getItem("Role");
+
+    if (storedToken && storedRole && !Role) {
+      dispatch(login({ Token: storedToken, Role: storedRole }));
+    }
+  }, [dispatch, Role]);
+
+  // Determine effective role (Redux state preferred, fallback to Token decode)
+  let effectiveRole = Role;
+  if (!effectiveRole && Token) {
+    try {
+      const decode = jwtDecode(Token);
+      effectiveRole = decode.role || null;
+    } catch (err) {
+      console.error("Invalid token", err.message);
+      effectiveRole = null;
+    }
+  }
+
+  // Decide which links to render
+  const linksToRender =
+    effectiveRole === "user"
       ? userLinks
-      : Role === "admin"
-        ? adminLinks
-        : []
-    : [];
+      : effectiveRole === "admin"
+      ? adminLinks
+      : [];
 
   return (
-    <div
-      className={`bg-dark ${styles.Navbar1} ${isOpen ? styles.expanded : ""}`}
-    >
+    <div className={`bg-dark ${styles.Navbar1} ${isOpen ? styles.expanded : ""}`}>
       <div className={styles.NavbarTop}>
         {/* Logo Left */}
         <div className={styles.LogoCon}>
@@ -43,7 +56,7 @@ const Navbar1 = () => {
         </div>
 
         {/* Center Links (Desktop) */}
-        {isLoggedIn ? (
+        {Token ? (
           <>
             <div className={styles.LaptopLinks}>
               {linksToRender.map((link) => (
@@ -56,8 +69,8 @@ const Navbar1 = () => {
                         ? styles.LActive
                         : ""
                       : location === link.to
-                        ? styles.LActive
-                        : ""
+                      ? styles.LActive
+                      : ""
                   }`}
                 >
                   {link.label}
@@ -67,7 +80,9 @@ const Navbar1 = () => {
 
             {/* Profile / Alerts */}
             <div className={styles.ProfileCon}>
-              <Link to={Role === "user" ? "/profile" : "/admin-profile"}>
+              <Link
+                to={effectiveRole === "user" ? "/profile" : "/admin-profile"}
+              >
                 <img
                   src="/me.jpg"
                   alt="profile"
@@ -106,7 +121,7 @@ const Navbar1 = () => {
       {/* Mobile Links */}
       {isOpen && (
         <div className={styles.LinksCon}>
-          {isLoggedIn ? (
+          {Token ? (
             linksToRender.map((link) => (
               <Link
                 key={link.to}
@@ -117,8 +132,8 @@ const Navbar1 = () => {
                       ? styles.Active
                       : ""
                     : location === link.to
-                      ? styles.Active
-                      : ""
+                    ? styles.Active
+                    : ""
                 }`}
               >
                 {link.label}
@@ -128,13 +143,17 @@ const Navbar1 = () => {
             <>
               <Link
                 to="/login"
-                className={`${styles.Link} ${location === "/login" ? styles.Active : ""}`}
+                className={`${styles.Link} ${
+                  location === "/login" ? styles.Active : ""
+                }`}
               >
                 Login
               </Link>
               <Link
                 to="/signup"
-                className={`${styles.Link} ${location === "/signup" ? styles.Active : ""}`}
+                className={`${styles.Link} ${
+                  location === "/signup" ? styles.Active : ""
+                }`}
               >
                 Signup
               </Link>

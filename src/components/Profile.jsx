@@ -6,7 +6,16 @@ import { useSelector } from "react-redux";
 import { Navigate, Outlet} from "react-router-dom";
 
 const Profile = () => {
-  const { Role, isLoggedIn,User} = useSelector((store) => store.Login);
+  const User = {
+    profileImage:"",
+    firstName:"",
+    lastName:"",
+    username:"",
+    email:"",
+    phone:"",
+    
+  }
+  const { Role, Token} = useSelector((store) => store.Login);
   const user = {
     Exprience: "4+ years of experience",
     Followers: "2.5M",
@@ -20,14 +29,13 @@ const Profile = () => {
   ];
 
   // ✅ Automatic redirect if not logged in
-  if (!isLoggedIn) {
+  if (!Token) {
     return <Navigate to="/login" replace />;
   }
 
   return (
     <div className={`bg-dark ${styles.Container}`}>
       <ProfileCard
-        id={User.id}
         profileImage={User.profileImage}
         Name={User.firstName}
         Username={User.username}
@@ -37,7 +45,6 @@ const Profile = () => {
         Experience={user.Exprience}
         Followers={user.Followers}
         Following={user.Following}
-        ProfileImg={User.image}
       />
       {Role === "user" && (
         <div className={styles.KeypointsCon}>

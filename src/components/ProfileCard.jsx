@@ -12,15 +12,15 @@ const ProfileCard = (props) => {
 
   const Logout = (e) => {
     e.preventDefault();
-    localStorage.removeItem("isLoggedIn");
-    localStorage.removeItem("User");
+    localStorage.removeItem("Token");
+    localStorage.removeItem("Role");
     window.location.href = "/login"
   }
   const HandleVerify = async (e) =>{
     e.preventDefault();
-    const id = localStorage.getItem("Token");
-    console.log(id);
-    const res = await Verify(id);
+    const token = localStorage.getItem("Token");
+    console.log(token);
+    const res = await Verify(token);
     console.log(res)
     console.log("Verify Account")
   }

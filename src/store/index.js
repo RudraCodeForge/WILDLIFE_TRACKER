@@ -49,9 +49,10 @@ const Reports = createSlice({
 const Login = createSlice({
   name: "Login",
   initialState: {
-    isLoggedIn: JSON.parse(localStorage.getItem("isLoggedIn")) || false,
+    Token: localStorage.getItem("Token") || null,
+    //isLoggedIn: JSON.parse(localStorage.getItem("isLoggedIn")) || false,
     Role: localStorage.getItem("Role") || null,
-    User: JSON.parse(localStorage.getItem("User")) || {},
+    //User: JSON.parse(localStorage.getItem("User")) || {},
     adminLinks: [
       { to: "/admin/dashboard", label: "Admin Dashboard" },
       { to: "/admin/manage-users", label: "Manage Users" },
@@ -79,19 +80,15 @@ const Login = createSlice({
   },
   reducers: {
     login: (state, action) => {
-      state.isLoggedIn = true;
-      state.User = action.payload.User;
+      state.Token = action.payload.Token;
       state.Role = action.payload.Role;
-      localStorage.setItem("User", JSON.stringify(action.payload.User));
+      localStorage.setItem("Token", action.payload.Token);
       localStorage.setItem("Role", action.payload.Role);
-      localStorage.setItem("isLoggedIn", JSON.stringify(true));
     },
     logout: (state) => {
-      state.isLoggedIn = false;
-      state.User = {};
+      state.Token = null;
       state.Role = null;
-      localStorage.removeItem("isLoggedIn");
-      localStorage.removeItem("User");
+      localStorage.removeItem("Token")
       localStorage.removeItem("Role");
     },
   },

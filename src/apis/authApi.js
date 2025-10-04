@@ -16,7 +16,7 @@ export const SignupUser = async (formData) => {
   return res.data;
 };
 
-export const Verify = async (id) => {
-  const res = await api.post("/auth/verify",{id}); 
+export const Verify = async (token) => {
+  const res = await api.post("/auth/verify",{token}); 
   return res.data;
 };
