@@ -6,6 +6,7 @@ import { IoIosMail, IoMdAddCircleOutline } from "react-icons/io";
 import { FaPhoneAlt } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { Verify } from "../apis/authApi";
 const ProfileCard = (props) => {
   const { Role } = useSelector((store) => store.Login);
 
@@ -15,7 +16,14 @@ const ProfileCard = (props) => {
     localStorage.removeItem("User");
     window.location.href = "/login"
   }
-  
+  const HandleVerify = async (e) =>{
+    e.preventDefault();
+    const id = localStorage.getItem("Token");
+    console.log(id);
+    const res = await Verify(id);
+    console.log(res)
+    console.log("Verify Account")
+  }
   return (
     <div className={`text-white pb-2 ${styles.ProfileCon}`}>
       <div className={styles.BgImg}>
@@ -42,9 +50,14 @@ const ProfileCard = (props) => {
       </div>
       <div className={styles.MainData}>
         <div>
+          <div className={styles.EmailCon}>
           <p>
             <IoIosMail /> {props.Email}
           </p>
+            <p 
+              className={styles.Verify}
+              onClick={HandleVerify}>Verify Your Account</p>
+          </div>
           <p>
             <FaPhoneAlt /> {props.Phone}
           </p>

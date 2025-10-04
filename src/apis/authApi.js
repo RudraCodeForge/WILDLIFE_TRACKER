@@ -15,3 +15,8 @@ export const SignupUser = async (formData) => {
   const res = await api.post("/auth/register", formData); // ✅ yaha formData direct bhejna hai
   return res.data;
 };
+
+export const Verify = async (id) => {
+  const res = await api.post("/auth/verify",{id}); 
+  return res.data;
+};

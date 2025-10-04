@@ -5,12 +5,11 @@ import { useSelector } from "react-redux";
 import { SignupUser } from "../apis/authApi";
 
 const SignUp = () => {
+  const [ProImg, setProImg] = useState(
+    "https://png.pngtree.com/png-vector/20231019/ourmid/pngtree-user-profile-avatar-png-image_10211467.png",
+  );
+  const [redirectToLogin, setRedirectToLogin] = useState(false);
   const { isLoggedIn } = useSelector((store) => store.SignUp);
-
-  if (isLoggedIn) {
-    return <Navigate to="/" replace />;
-  }
-
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -21,12 +20,21 @@ const SignUp = () => {
     password: "",
     confirmPassword: "",
     Terms: false,
-    profileImage: "", // Cloudinary image URL
+    profileImage: ProImg, // Cloudinary image URL
   });
 
   const [uploading, setUploading] = useState(false);
 
   const [error, setError] = useState([]);
+
+  if (isLoggedIn) {
+    return <Navigate to="/" replace />;
+  }
+
+  if (redirectToLogin) {
+    return <Navigate to="/login" replace />;
+  }
+  
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -54,12 +62,13 @@ const SignUp = () => {
         {
           method: "POST",
           body: data,
-        }
+        },
       );
       const result = await res.json();
+      setProImg(result.secure_url);
       setFormData((prev) => ({
         ...prev,
-        profileImage: result.secure_url, // Cloudinary URL
+        profileImage: result.secure_url,
       }));
     } catch (err) {
       console.error("Image upload error:", err);
@@ -70,12 +79,33 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (formData.password !== formData.confirmPassword) {
+      setError(["Passwords do not match"]);
+      return;
+    }
     try {
       const res = await SignupUser(formData);
-      setError(res.errorMessages);
-      console.log("Signup response:", res);
+      if (res && Array.isArray(res.errorMessages)) {
+        setError(res.errorMessages);
+      } else {
+        setError([]);
+        setFormData({
+          firstName: "",
+          lastName: "",
+          username: "",
+          email: "",
+          phone: "",
+          DateOfBirth: "",
+          password: "",
+          confirmPassword: "",
+          Terms: false,
+          profileImage: ProImg,
+        });
+        setRedirectToLogin(true);
+      }
     } catch (error) {
       console.error("ERROR SIGNING UP:", error);
+      setError(["An unexpected error occurred."]);
     }
   };
 
@@ -92,6 +122,13 @@ const SignUp = () => {
             Start your conservation journey today
           </p>
           <div className="ErrorMessageCon">
+            {error.map((err, index) => {
+              return (
+                <li className="Error" key={index}>
+                  {err}
+                </li>
+              );
+            })}
           </div>
         </div>
 
@@ -109,7 +146,9 @@ const SignUp = () => {
               className={`form-control ${styles.input}`}
               onChange={handleImageUpload}
             />
-            {uploading && <p className="small text-info mt-1">Uploading image...</p>}
+            {uploading && (
+              <p className="small text-info mt-1">Uploading image...</p>
+            )}
           </div>
 
           <div className={styles.formSection}>

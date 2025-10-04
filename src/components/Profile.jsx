@@ -27,6 +27,7 @@ const Profile = () => {
   return (
     <div className={`bg-dark ${styles.Container}`}>
       <ProfileCard
+        id={User.id}
         profileImage={User.profileImage}
         Name={User.firstName}
         Username={User.username}

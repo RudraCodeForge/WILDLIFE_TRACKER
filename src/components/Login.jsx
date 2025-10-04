@@ -21,7 +21,6 @@ const Login = () => {
     const res = await loginUser(Username, password);
     console.log("Full Response:", res);
     console.log("User Data:", res.User);
-
     if (!res.isLoggedIn) {
       setmessage(res.message);
       return;
@@ -36,6 +35,7 @@ const Login = () => {
     dispatch(login(User));
 
     // Save to localStorage
+    localStorage.setItem("Token", res.token);
     localStorage.setItem("User", JSON.stringify(User));
     localStorage.setItem("Role", res.Role);
     localStorage.setItem("isLoggedIn", JSON.stringify(res.isLoggedIn));
