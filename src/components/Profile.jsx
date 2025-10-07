@@ -2,20 +2,21 @@ import ProfileCard from "./ProfileCard";
 import styles from "../styles/Profile.module.css";
 import ProfileLinks from "./ProfileLinks";
 import KeyPoints from "./KeyPoints";
+import { ProfileData } from "../apis/DATAAPI";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Navigate, Outlet} from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 
 const Profile = () => {
   const User = {
-    profileImage:"",
-    firstName:"",
-    lastName:"",
-    username:"",
-    email:"",
-    phone:"",
-    
-  }
-  const { Role, Token} = useSelector((store) => store.Login);
+    profileImage: "",
+    firstName: "",
+    lastName: "",
+    username: "",
+    email: "",
+    phone: "",
+  };
+  const { Role, Token } = useSelector((store) => store.Login);
   const user = {
     Exprience: "4+ years of experience",
     Followers: "2.5M",
@@ -65,3 +66,10 @@ const Profile = () => {
 };
 
 export default Profile;
+
+export const ProfileFetch = async () => {
+  const token = localStorage.getItem("Token");
+  console.log(token);
+  const data = await ProfileData(token);
+  console.log(data);
+};

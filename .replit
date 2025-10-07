@@ -42,7 +42,7 @@ externalPort = 3001
 expertMode = true
 
 [workflows]
-runButton = "Project"
+runButton = "React Dev Server"
 
 [[workflows.workflow]]
 name = "Project"
