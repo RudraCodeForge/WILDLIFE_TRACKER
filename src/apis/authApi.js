@@ -1,22 +1,35 @@
 import api from "./axios";
 
-// Api for login
 export const loginUser = async (username, password) => {
   const res = await api.post("/auth/login", {
     username,
     password,
-    expiresInMins: 60, // optional
+    expiresInMins: 60, 
   });
   return res.data;
 };
 
-// Api for signup
 export const SignupUser = async (formData) => {
   const res = await api.post("/auth/register", formData); // ✅ yaha formData direct bhejna hai
   return res.data;
 };
 
 export const Verify = async (token) => {
-  const res = await api.post("/auth/verify",{token}); 
-  return res.data;
+  const res = await api.get("/auth/verify", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res.data;
 };
+
+export const Email_Verification = async (token) => {
+  try {
+    const res = await api.get(`/auth/email-verification/${token}`);
+    return res.data;
+  } catch (error) {
+    console.error("Verification failed:", error.response?.data || error.message);
+    throw error; 
+  }
+};
+

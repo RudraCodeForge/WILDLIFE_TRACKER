@@ -27,6 +27,7 @@ import UserList from "./components/UserList";
 import ManageUser from "./components/ManageUser";
 import {SpecificProfile} from "./components/ManageUser";
 import Reports from "./components/Reports";
+import EmailVerifier from "./components/EmailVerifier";
 import AddSpeciesForm from "./components/AddSpecies";
 import { Users } from "./components/UserList";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
@@ -142,6 +143,10 @@ const router = createBrowserRouter([
       },
       
     ],
+  },
+  {
+    path: "/email-verification/:token",
+    element: <EmailVerifier />
   },
   {
     path: "*", // This is the wildcard path

@@ -3,20 +3,14 @@ import styles from "../styles/Profile.module.css";
 import ProfileLinks from "./ProfileLinks";
 import KeyPoints from "./KeyPoints";
 import { ProfileData } from "../apis/DATAAPI";
-import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Navigate, Outlet } from "react-router-dom";
+import Spinner from "./Spinner";
+import { Navigate, Outlet, useLoaderData } from "react-router-dom";
 
 const Profile = () => {
-  const User = {
-    profileImage: "",
-    firstName: "",
-    lastName: "",
-    username: "",
-    email: "",
-    phone: "",
-  };
+  const User = useLoaderData();
   const { Role, Token } = useSelector((store) => store.Login);
+
   const user = {
     Exprience: "4+ years of experience",
     Followers: "2.5M",
@@ -26,19 +20,25 @@ const Profile = () => {
   const activities = [
     { No: 42, Name: "Mission Completed" },
     { No: 5, Name: "Active Missions" },
-    { No: 128, Name: "Animal Tracked." },
+    { No: 128, Name: "Animals Tracked" },
   ];
 
-  // ✅ Automatic redirect if not logged in
   if (!Token) {
     return <Navigate to="/login" replace />;
+  }
+
+  if (!User) {
+    localStorage.removeItem("Token")
+    return <Spinner/>
   }
 
   return (
     <div className={`bg-dark ${styles.Container}`}>
       <ProfileCard
+        Verified = {User.isVerified}
         profileImage={User.profileImage}
         Name={User.firstName}
+        LastName={User.lastName}
         Username={User.username}
         Badge={Role}
         Email={User.email}
@@ -69,7 +69,16 @@ export default Profile;
 
 export const ProfileFetch = async () => {
   const token = localStorage.getItem("Token");
-  console.log(token);
-  const data = await ProfileData(token);
-  console.log(data);
+
+  try {
+    const res = await ProfileData(token);
+    if (res && res.UserData) {
+      return res.UserData;
+    } else {
+      throw new Error("No user data in response");
+    }
+  } catch (err) {
+    console.error("Error fetching profile:", err);
+    return null;
+  }
 };

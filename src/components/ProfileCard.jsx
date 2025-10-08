@@ -1,5 +1,6 @@
 import styles from "../styles/Profile.module.css";
 import { GiMedal } from "react-icons/gi";
+import { MdVerified } from "react-icons/md";
 import { TfiMedall } from "react-icons/tfi";
 import { FaRegHeart, FaArrowTrendUp } from "react-icons/fa6";
 import { IoIosMail, IoMdAddCircleOutline } from "react-icons/io";
@@ -14,16 +15,16 @@ const ProfileCard = (props) => {
     e.preventDefault();
     localStorage.removeItem("Token");
     localStorage.removeItem("Role");
-    window.location.href = "/login"
-  }
-  const HandleVerify = async (e) =>{
+    window.location.href = "/login";
+  };
+  const HandleVerify = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem("Token");
     console.log(token);
     const res = await Verify(token);
-    console.log(res)
-    console.log("Verify Account")
-  }
+    console.log(res);
+    console.log("Verify Account");
+  };
   return (
     <div className={`text-white pb-2 ${styles.ProfileCon}`}>
       <div className={styles.BgImg}>
@@ -43,7 +44,7 @@ const ProfileCard = (props) => {
             <span className={styles.Badge}>{props.Badge}</span>
           </div>
           <div>
-            <p className={styles.Name}>{props.Name}</p>
+            <p className={styles.Name}>{`${props.Name} ${props.LastName}`}</p>
             <p className={styles.Username}>@{props.Username}</p>
           </div>
         </div>
@@ -51,12 +52,16 @@ const ProfileCard = (props) => {
       <div className={styles.MainData}>
         <div>
           <div className={styles.EmailCon}>
-          <p>
-            <IoIosMail /> {props.Email}
-          </p>
-            <p 
-              className={styles.Verify}
-              onClick={HandleVerify}>Verify Your Account</p>
+            <p>
+              <IoIosMail /> {props.Email}
+            </p>
+            {props.Verified ? (
+              <MdVerified color="blue" />
+            ) : (
+              <p className={styles.Verify} onClick={HandleVerify}>
+                Verify Your Account
+              </p>
+            )}
           </div>
           <p>
             <FaPhoneAlt /> {props.Phone}
