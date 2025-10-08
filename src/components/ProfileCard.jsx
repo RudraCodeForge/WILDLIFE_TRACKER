@@ -20,10 +20,7 @@ const ProfileCard = (props) => {
   const HandleVerify = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem("Token");
-    console.log(token);
-    const res = await Verify(token);
-    console.log(res);
-    console.log("Verify Account");
+    await Verify(token);
   };
   return (
     <div className={`text-white pb-2 ${styles.ProfileCon}`}>

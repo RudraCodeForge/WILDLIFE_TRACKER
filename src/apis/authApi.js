@@ -33,3 +33,17 @@ export const Email_Verification = async (token) => {
   }
 };
 
+// Ye function access token ko refresh karke return karega
+export const refreshTokenFunc = async () => {
+  try {
+    const res = await api.post("/auth/refresh", {}, { credentials: "include" });
+    const newToken = res.data.accessToken;
+    localStorage.setItem("Token", newToken);
+    return newToken;
+  } catch (err) {
+    console.error("Refresh token failed:", err);
+    localStorage.removeItem("accessToken");
+    window.location.href = "/login"; // redirect to login if refresh fails
+    throw err;
+  }
+};

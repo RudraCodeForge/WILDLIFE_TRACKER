@@ -4,7 +4,6 @@ import { useLoaderData } from "react-router-dom";
 
 const Home = () => {
   const Data = useLoaderData();
-
   return (
     <div className={`bg-dark ${styles.home}`}>
       <div className={styles.innerhome}>

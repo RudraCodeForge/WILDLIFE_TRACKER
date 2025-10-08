@@ -6,7 +6,7 @@ import { ProfileData } from "../apis/DATAAPI";
 import { useSelector } from "react-redux";
 import Spinner from "./Spinner";
 import { Navigate, Outlet, useLoaderData } from "react-router-dom";
-
+import {refreshTokenFunc} from "../apis/authApi";
 const Profile = () => {
   const User = useLoaderData();
   const { Role, Token } = useSelector((store) => store.Login);
@@ -69,9 +69,8 @@ export default Profile;
 
 export const ProfileFetch = async () => {
   const token = localStorage.getItem("Token");
-
   try {
-    const res = await ProfileData(token);
+    const res = await ProfileData(token,refreshTokenFunc);;
     if (res && res.UserData) {
       return res.UserData;
     } else {
